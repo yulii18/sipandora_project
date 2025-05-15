@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIPANDORA - Sistem Pendonor Darah dan Respon Darurat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="#" class="logo">SIPAN<span>DORA</span></a>
+          <button class="mobile-menu-btn">☰</button>
+          <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#donor">Donor Darah</a></li>
+            <li><a href="#emergency">Darurat</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#" class="btn" id="registerBtn">Daftar Donor</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section class="hero" id="home">
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div
+            class="carousel-item active"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80&quot;);
+            "
+          >
+            <div class="carousel-caption">
+              <h2>Donor Darah Selamatkan Nyawa</h2>
+              <p>
+                Setetes darah Anda bisa menjadi harapan bagi mereka yang
+                membutuhkan. Mari bergabung menjadi pendonor darah.
+              </p>
+              <a href="#donor" class="btn">Pelajari Lebih Lanjut</a>
+            </div>
+          </div>
+          <div
+            class="carousel-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80&quot;);
+            "
+          >
+            <div class="carousel-caption">
+              <h2>Respon Darurat Cepat</h2>
+              <p>
+                Sistem kami siap membantu saat Anda membutuhkan darah darurat
+                atau berada dalam situasi gawat darurat.
+              </p>
+              <a href="#emergency" class="btn">Lihat Layanan</a>
+            </div>
+          </div>
+          <div
+            class="carousel-item"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80&quot;);
+            "
+          >
+            <div class="carousel-caption">
+              <h2>Komunitas Pendonor Aktif</h2>
+              <p>
+                Bergabunglah dengan ribuan pendonor darah yang siap membantu
+                kapan saja dibutuhkan.
+              </p>
+              <a href="#" class="btn" id="registerBtn2">Daftar Sekarang</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-control prev">❮</button>
+          <button class="carousel-control next">❯</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Section -->
+    <section class="emergency-section" id="emergency">
+      <div class="container">
+        <h2 class="section-title text-center">Layanan Darurat</h2>
+        <p class="text-center" style="max-width: 800px; margin: 0 auto 30px">
+          Kami menyediakan layanan cepat untuk situasi darurat yang membutuhkan
+          darah atau bantuan medis segera.
+        </p>
+
+        <div class="emergency-cards">
+          <div class="emergency-card">
+            <img
+              src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Pencarian Darah Darurat"
+            />
+            <div class="emergency-card-content">
+              <h3>Pencarian Darah Darurat</h3>
+              <p>
+                Cari pendonor darah dengan golongan darah tertentu di lokasi
+                terdekat saat situasi darurat.
+              </p>
+              <a href="#" class="btn" id="bloodSearchBtn">Cari Darah</a>
+            </div>
+          </div>
+
+          <div class="emergency-card">
+            <img
+              src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Panggilan Darurat"
+            />
+            <div class="emergency-card-content">
+              <h3>Panggilan Darurat</h3>
+              <p>
+                Hubungi layanan darurat terdekat dengan satu klik untuk bantuan
+                medis segera.
+              </p>
+              <a href="#" class="btn" id="emergencyCallBtn">Panggil Bantuan</a>
+            </div>
+          </div>
+
+          <div class="emergency-card">
+            <img
+              src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Lokasi PMI Terdekat"
+            />
+            <div class="emergency-card-content">
+              <h3>Lokasi PMI Terdekat</h3>
+              <p>
+                Temukan unit Palang Merah Indonesia terdekat untuk donor darah
+                atau bantuan medis.
+              </p>
+              <a href="#" class="btn" id="findPmiBtn">Cari PMI</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section" id="donor">
+      <div class="container">
+        <h2 class="section-title text-center">Informasi Donor Darah</h2>
+        <p class="text-center" style="max-width: 800px; margin: 0 auto 30px">
+          Pelajari lebih lanjut tentang donor darah dan bagaimana Anda bisa
+          berkontribusi menyelamatkan nyawa.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <i>💉</i>
+            <h3>Syarat Donor Darah</h3>
+            <p>
+              Berat badan minimal 45 kg, usia 17-65 tahun, tekanan darah normal,
+              dan kondisi kesehatan yang baik.
+            </p>
+          </div>
+
+          <div class="info-item">
+            <i>⏱️</i>
+            <h3>Jadwal Donor</h3>
+            <p>
+              Donor darah bisa dilakukan setiap 3 bulan untuk pria dan setiap 4
+              bulan untuk wanita.
+            </p>
+          </div>
+
+          <div class="info-item">
+            <i>🩸</i>
+            <h3>Manfaat Donor Darah</h3>
+            <p>
+              Menjaga kesehatan jantung, mendeteksi penyakit dini, dan tentunya
+              menyelamatkan nyawa.
+            </p>
+          </div>
+
+          <div class="info-item">
+            <i>❓</i>
+            <h3>Pertanyaan Umum</h3>
+            <p>
+              Temukan jawaban atas pertanyaan umum seputar donor darah dan
+              prosesnya.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" id="donorCount">0</div>
+            <div class="stat-label">Pendonor Terdaftar</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" id="bloodRequestCount">0</div>
+            <div class="stat-label">Permintaan Darah</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" id="livesSavedCount">0</div>
+            <div class="stat-label">Nyawa Diselamatkan</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number" id="emergencyCount">0</div>
+            <div class="stat-label">Respon Darurat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Siap Menjadi Pahlawan?</h2>
+          <p>
+            Daftarkan diri Anda sebagai pendonor darah dan jadilah bagian dari
+            komunitas yang menyelamatkan nyawa. Bersama kita bisa membuat
+            perbedaan!
+          </p>
+          <a href="#" class="btn" id="registerBtn3">Daftar Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Tentang Kami</h3>
+            <p>
+              SIPANDORA adalah platform inovatif yang menghubungkan pendonor
+              darah dengan mereka yang membutuhkan, serta menyediakan layanan
+              respon darurat untuk situasi kritis.
+            </p>
+            <div class="social-links">
+              <a href="#"><span>FB</span></a>
+              <a href="#"><span>TW</span></a>
+              <a href="#"><span>IG</span></a>
+              <a href="#"><span>YT</span></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Layanan</h3>
+            <ul class="footer-links">
+              <li><a href="#">Pencarian Darah</a></li>
+              <li><a href="#">Pendaftaran Donor</a></li>
+              <li><a href="#">Panggilan Darurat</a></li>
+              <li><a href="#">Jadwal Donor</a></li>
+              <li><a href="#">Informasi Kesehatan</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Kontak Kami</h3>
+            <p><strong>Alamat:</strong> Jl. Kesehatan No. 123, Jakarta</p>
+            <p><strong>Email:</strong> info@sipandora.id</p>
+            <p><strong>Telepon:</strong> (021) 1234-5678</p>
+            <p><strong>Darurat:</strong> 119 (24 Jam)</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Pendaftaran Donor Darah</h2>
+        <form id="donorForm">
+          <div class="form-group">
+            <label for="fullName">Nama Lengkap</label>
+            <input type="text" id="fullName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Nomor Telepon</label>
+            <input type="tel" id="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="bloodType">Golongan Darah</label>
+            <select id="bloodType" required>
+              <option value="">Pilih Golongan Darah</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Alamat</label>
+            <textarea id="address" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="lastDonation">Terakhir Donor (jika pernah)</label>
+            <input type="date" id="lastDonation" />
+          </div>
+
+          <button type="submit" class="btn">Daftar Sekarang</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Blood Search Modal -->
+    <div class="modal" id="bloodSearchModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Pencarian Darah Darurat</h2>
+        <form id="bloodSearchForm">
+          <div class="form-group">
+            <label for="searchBloodType">Golongan Darah Dibutuhkan</label>
+            <select id="searchBloodType" required>
+              <option value="">Pilih Golongan Darah</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="searchLocation">Lokasi</label>
+            <input
+              type="text"
+              id="searchLocation"
+              placeholder="Masukkan kota atau kecamatan"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="urgencyLevel">Tingkat Urgensi</label>
+            <select id="urgencyLevel" required>
+              <option value="high">Sangat Mendesak</option>
+              <option value="medium">Mendesak</option>
+              <option value="low">Bisa Menunggu</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="patientCondition">Kondisi Pasien</label>
+            <textarea
+              id="patientCondition"
+              rows="3"
+              placeholder="Jelaskan kondisi pasien secara singkat"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn">Cari Pendonor</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Emergency Call Modal -->
+    <div class="modal" id="emergencyCallModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Panggilan Darurat</h2>
+        <p>Silakan pilih jenis layanan darurat yang Anda butuhkan:</p>
+
+        <div style="margin: 30px 0">
+          <button
+            class="btn"
+            style="width: 100%; margin-bottom: 15px; background-color: #dc3545"
+            id="callAmbulanceBtn"
+          >
+            🚑 Panggil Ambulans
+          </button>
+
+          <button
+            class="btn"
+            style="width: 100%; margin-bottom: 15px; background-color: #fd7e14"
+            id="callPoliceBtn"
+          >
+            🚓 Panggil Polisi
+          </button>
+
+          <button
+            class="btn"
+            style="width: 100%; background-color: #0d6efd"
+            id="callFireBtn"
+          >
+            🚒 Panggil Pemadam Kebakaran
+          </button>
+        </div>
+
+        <p><strong>Atau hubungi nomor darurat langsung:</strong></p>
+        <p>Ambulans: 119</p>
+        <p>Polisi: 110</p>
+        <p>Pemadam Kebakaran: 113</p>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Carousel Functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-item");
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+
+        if (index >= totalSlides) {
+          currentSlide = 0;
+        } else if (index < 0) {
+          currentSlide = totalSlides - 1;
+        } else {
+          currentSlide = index;
+        }
+
+        slides[currentSlide].classList.add("active");
+      }
+
+      document
+        .querySelector(".carousel-control.next")
+        .addEventListener("click", () => {
+          showSlide(currentSlide + 1);
+        });
+
+      document
+        .querySelector(".carousel-control.prev")
+        .addEventListener("click", () => {
+          showSlide(currentSlide - 1);
+        });
+
+      // Auto slide change
+      setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+
+      // Counter Animation
+      function animateCounter(element, target, duration = 2000) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            clearInterval(timer);
+            current = target;
+          }
+          element.textContent = Math.floor(current).toLocaleString();
+        }, 16);
+      }
+
+      // Animate stats when they come into view
+      const statsSection = document.querySelector(".stats-section");
+      const statsAnimated = [false, false, false, false];
+
+      function checkStatsInView() {
+        const rect = statsSection.getBoundingClientRect();
+        const inView =
+          rect.top <= window.innerHeight / 2 &&
+          rect.bottom >= window.innerHeight / 2;
+
+        if (inView) {
+          if (!statsAnimated[0]) {
+            animateCounter(document.getElementById("donorCount"), 5243);
+            statsAnimated[0] = true;
+          }
+          if (!statsAnimated[1]) {
+            animateCounter(document.getElementById("bloodRequestCount"), 1876);
+            statsAnimated[1] = true;
+          }
+          if (!statsAnimated[2]) {
+            animateCounter(document.getElementById("livesSavedCount"), 3892);
+            statsAnimated[2] = true;
+          }
+          if (!statsAnimated[3]) {
+            animateCounter(document.getElementById("emergencyCount"), 765);
+            statsAnimated[3] = true;
+          }
+        }
+      }
+
+      window.addEventListener("scroll", checkStatsInView);
+      window.addEventListener("load", checkStatsInView);
+
+      // Modal Functionality
+      const registerBtns = document.querySelectorAll(
+        "#registerBtn, #registerBtn2, #registerBtn3",
+      );
+      const bloodSearchBtn = document.getElementById("bloodSearchBtn");
+      const emergencyCallBtn = document.getElementById("emergencyCallBtn");
+      const findPmiBtn = document.getElementById("findPmiBtn");
+      const modals = document.querySelectorAll(".modal");
+      const closeModalBtns = document.querySelectorAll(".close-modal");
+
+      registerBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById("registerModal").style.display = "flex";
+        });
+      });
+
+      bloodSearchBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("bloodSearchModal").style.display = "flex";
+      });
+
+      emergencyCallBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("emergencyCallModal").style.display = "flex";
+      });
+
+      findPmiBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert(
+          "Fitur pencarian lokasi PMI terdekat akan membuka peta dengan lokasi Anda saat ini. Pastikan GPS aktif.",
+        );
+        // In a real implementation, this would open a map with nearby PMI locations
+      });
+
+      closeModalBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.closest(".modal").style.display = "none";
+        });
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) {
+          e.target.style.display = "none";
+        }
+      });
+
+      // Emergency Call Buttons
+      document
+        .getElementById("callAmbulanceBtn")
+        .addEventListener("click", () => {
+          alert(
+            "Memanggil ambulans... Nomor darurat 119 akan dihubungi. Pastikan lokasi Anda aktif.",
+          );
+        });
+
+      document.getElementById("callPoliceBtn").addEventListener("click", () => {
+        alert(
+          "Memanggil polisi... Nomor darurat 110 akan dihubungi. Pastikan lokasi Anda aktif.",
+        );
+      });
+
+      document.getElementById("callFireBtn").addEventListener("click", () => {
+        alert(
+          "Memanggil pemadam kebakaran... Nomor darurat 113 akan dihubungi. Pastikan lokasi Anda aktif.",
+        );
+      });
+
+      // Form Submissions
+      document.getElementById("donorForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert(
+          "Terima kasih telah mendaftar sebagai pendonor darah! Kami akan menghubungi Anda untuk informasi lebih lanjut.",
+        );
+        document.getElementById("registerModal").style.display = "none";
+        // Reset form
+        e.target.reset();
+      });
+
+      document
+        .getElementById("bloodSearchForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const bloodType = document.getElementById("searchBloodType").value;
+          const location = document.getElementById("searchLocation").value;
+
+          alert(
+            `Mencari pendonor darah golongan ${bloodType} di ${location}... Hasil pencarian akan ditampilkan.`,
+          );
+          document.getElementById("bloodSearchModal").style.display = "none";
+          // Reset form
+          e.target.reset();
+        });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
