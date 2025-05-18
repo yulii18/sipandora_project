@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi - Sistem Donor Darah</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Registration Section -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-container">
+                <div class="registration-header">
+                    <a href="#" class="logo">SIPAN<span>DORA</span></a>
+                    <h2>Form Pendaftaran Donor Darah</h2>
+                    <p>Silakan isi data diri Anda dengan lengkap dan benar</p>
+                </div>
+                
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nik">NIK</label>
+                            <input type="text" id="nik" name="nik" placeholder="Masukkan 16 digit NIK" required maxlength="16">
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tempatLahir">Tempat Lahir</label>
+                            <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Masukkan tempat lahir" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalLahir">Tanggal Lahir</label>
+                            <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <div class="gender-options">
+                                <label>
+                                    <input type="radio" id="laki-laki" name="jenisKelamin" value="Laki-laki" required>
+                                </label>
+                                <label for="laki-laki">Laki-Laki</label>
+                                <label>
+                                    <input type="radio" id="perempuan" name="jenisKelamin" value="Perempuan">
+                                </label>
+                                <label for="perempuan">Perempuan</label>
+                            </div>
+                        </div>
+                    
+                    <div class="form-group">
+                        <label for="golonganDarah">Golongan Darah</label>
+                        <select id="golonganDarah" name="golonganDarah" class="blood-type-select" required>
+                            <option value="" disabled selected>Pilih golongan darah</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap</label>
+                        <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="kelurahan">Kelurahan</label>
+                            <input type="text" id="kelurahan" name="kelurahan" placeholder="Masukkan kelurahan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kecamatan">Kecamatan</label>
+                            <input type="text" id="kecamatan" name="kecamatan" placeholder="Masukkan kecamatan" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="kota">Kota/Kabupaten</label>
+                            <input type="text" id="kota" name="kota" placeholder="Masukkan kota/kabupaten" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pekerjaan">Pekerjaan</label>
+                            <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan pekerjaan" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px; margin-top: 20px;">
+                        <i class="fas fa-user-plus" style="margin-right: 8px;"></i> Daftar Sekarang
+                    </button>
+                    
+                    <div class="registration-footer">
+                        <p>Sudah punya akun? <a href="login.html">Login disini</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Tentang Kami</h3>
+            <p>
+              SIPANDORA adalah platform inovatif yang menghubungkan pendonor
+              darah dengan mereka yang membutuhkan, serta menyediakan layanan
+              respon darurat untuk situasi kritis.
+            </p>
+            <div class="social-links">
+              <a href="#"><span>FB</span></a>
+              <a href="#"><span>TW</span></a>
+              <a href="#"><span>IG</span></a>
+              <a href="#"><span>YT</span></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Layanan</h3>
+            <ul class="footer-links">
+              <li><a href="#">Pencarian Darah</a></li>
+              <li><a href="#">Pendaftaran Donor</a></li>
+              <li><a href="#">Jadwal Donor</a></li>
+              <li><a href="#">Informasi Kesehatan</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Kontak Kami</h3>
+            <p><strong>Alamat:</strong> Jl. Kartini No. 20, Lolu Selatan, Kec. Palu Selatan, Kota Palu, Sulawesi Tengah 94235</p>
+            <p><strong>Email:</strong> info@sipandora.id</p>
+            <p><strong>Telepon:</strong> (021) 1234-5678</p>
+            <p><strong>Darurat:</strong> 119 (24 Jam)</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
