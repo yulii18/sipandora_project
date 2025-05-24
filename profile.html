@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - SIPANDORA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header sama seperti dashboard.html -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
+                <button class="mobile-menu-btn">☰</button>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">Beranda</a></li>
+                    <li><a href="riwayat_donor.html">Riwayat Donor</a></li>
+                    <li><a href="permintaan_darah.html">Permintaan Darah</a></li>
+                    <li><a href="profile.html" class="active">Profil Saya</a></li>
+                    <li><a href="index.html" id="logoutBtn" class="btn">Keluar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-header">
+                <h1>Profil Saya</h1>
+                <button id="editProfileBtn" class="btn">Edit Profil</button>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <div class="avatar-placeholder" id="avatarInitials">JD</div>
+                        <button class="change-avatar-btn">Ubah Foto</button>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <h2 id="profileName">John Doe</h2>
+                        <p class="profile-blood-type"><i class="fas fa-tint"></i> Golongan Darah: <span id="bloodType">A</span></p>
+                        <p class="profile-points"><i class="fas fa-star"></i> Poin Donor: <span id="donationPoints">120</span></p>
+                    </div>
+                </div>
+                
+                <div class="profile-data">
+                    <h3>Data Pribadi</h3>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <label>NIK</label>
+                            <p id="nik">1234567890123456</p>
+                        </div>
+                        <div class="data-item">
+                            <label>Tempat, Tanggal Lahir</label>
+                            <p id="birthInfo">Jakarta, 15 Januari 1990</p>
+                        </div>
+                        <div class="data-item">
+                            <label>Jenis Kelamin</label>
+                            <p id="gender">Laki-laki</p>
+                        </div>
+                        <div class="data-item">
+                            <label>Alamat</label>
+                            <p id="address">Jl. Contoh No. 123, Jakarta</p>
+                        </div>
+                        <div class="data-item">
+                            <label>Email</label>
+                            <p id="email">john.doe@example.com</p>
+                        </div>
+                        <div class="data-item">
+                            <label>No. Telepon</label>
+                            <p id="phone">081234567890</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button id="changePasswordBtn" class="btn-outline">Ubah Kata Sandi</button>
+                    <button id="deleteAccountBtn" class="btn-outline danger">Hapus Akun</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer sama seperti dashboard.html -->
+    <footer>
+        <div class="container">
+            <!-- Footer content -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

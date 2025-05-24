@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasus Darurat - SIPANDORA</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard_admin_pmi.html">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+        </li>
+        <li>
+            <a href="laporan_donor.html">
+                <i class="fas fa-file-alt"></i>
+                <span>Laporan Donor</span>
+            </a>
+        </li>
+        <li>
+            <a href="stok_darah.html">
+                <i class="fas fa-tint"></i>
+                <span>Kelola Stok Darah</span>
+            </a>
+        </li>
+        <li>
+            <a href="kasus_darurat.html" class="active">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Kasus Darurat</span>
+            </a>
+        </li>
+        <li>
+            <a href="pengaturan.html">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan</span>
+            </a>
+        </li>
+        <li class="logout-btn">
+            <a href="../index.html">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-exclamation-triangle"></i> Kasus Darurat</h1>
+                <div class="page-actions">
+                    <button class="btn">
+                        <i class="fas fa-plus"></i> Tambah Kasus
+                    </button>
+                </div>
+            </div>
+
+            <div class="emergency-cases-container">
+                <div class="emergency-list">
+                    <div class="emergency-item urgent">
+                        <div class="emergency-header">
+                            <h3>Pasien Kecelakaan</h3>
+                            <span class="status-badge">URGENT</span>
+                        </div>
+                        <div class="emergency-details">
+                            <p><i class="fas fa-tint"></i> Gol. Darah: <strong>A+</strong></p>
+                            <p><i class="fas fa-map-marker-alt"></i> RS. Siloam</p>
+                            <p><i class="fas fa-clock"></i> Dilaporkan: 15:30 WIB</p>
+                            <p><i class="fas fa-user"></i> Dokter Penanggung Jawab: Dr. Andi</p>
+                        </div>
+                        <div class="emergency-actions">
+                            <button class="btn btn-small">
+                                <i class="fas fa-check"></i> Tandai Diproses
+                            </button>
+                            <button class="btn btn-small">
+                                <i class="fas fa-phone"></i> Hubungi RS
+                            </button>
+                            <button class="btn btn-small">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                    <!-- More emergency cases would be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="scriptp.js"></script>
+</body>
+</html>

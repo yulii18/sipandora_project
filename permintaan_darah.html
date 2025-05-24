@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permintaan Darah - SIPANDORA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header sama seperti dashboard.html -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
+                <button class="mobile-menu-btn">☰</button>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">Beranda</a></li>
+                    <li><a href="riwayat_donor.html">Riwayat Donor</a></li>
+                    <li><a href="permintaan_darah.html" class="active">Permintaan Darah</a></li>
+                    <li><a href="profile.html">Profil Saya</a></li>
+                    <li><a href="index.html" id="logoutBtn" class="btn">Keluar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="daftar-donor-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Permintaan Darah</h1>
+                <p>Temukan permintaan darah terbaru di sekitar Anda</p>
+            </div>
+            
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari berdasarkan nama atau lokasi...">
+                    <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="bloodTypeFilter">Gol. Darah:</label>
+                        <select id="bloodTypeFilter">
+                            <option value="semua">Semua</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="cityFilter">Kota:</label>
+                        <select id="cityFilter">
+                            <option value="semua">Semua Kota</option>
+                            <option value="palu">Palu</option>
+                            <option value="jakarta">Jakarta</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="urgencyFilter">Urgensi:</label>
+                        <select id="urgencyFilter">
+                            <option value="semua">Semua</option>
+                            <option value="darurat">Darurat</option>
+                            <option value="rutin">Rutin</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-outline">Reset</button>
+                </div>
+            </div>
+            
+            <div class="donor-list-container">
+                <div class="no-donor" id="noRequestData">
+                    <i class="fas fa-tint fa-4x"></i>
+                    <h3>Tidak Ada Permintaan Darah Saat Ini</h3>
+                    <p>Tidak ada permintaan darah yang ditemukan di sekitar Anda</p>
+                </div>
+                
+                <div class="request-list" id="requestList" style="display: none;">
+                    <!-- Daftar permintaan darah akan ditampilkan di sini -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer sama seperti dashboard.html -->
+    <footer>
+        <div class="container">
+            <!-- Footer content -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

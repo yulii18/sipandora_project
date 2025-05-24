@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin RS - SIPANDORA</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+ <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard_admin_rs.html" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
+            <li>
+                <a href="permintaan_darah.html">
+                    <i class="fas fa-tint"></i>
+                    <span>Permintaan Darah</span>
+                </a>
+            </li>
+            <li>
+                <a href="pasien.html">
+                    <i class="fas fa-procedures"></i>
+                    <span>Daftar Pasien</span>
+                </a>
+            </li>
+            <li>
+                <a href="riwayat_permintaan.html">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat Permintaan</span>
+                </a>
+            </li>
+            <li class="logout-btn">
+                <a href="../index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
+            </li>
+        </ul>
+    </div> 
+
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-welcome">
+                <h1>Selamat Datang, <span>Admin Rumah Sakit</span>!</h1>
+                <p>Hari ini: <span>5 permintaan darah, 2 darurat</span></p>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>Permintaan Darah</h3>
+                    <div class="blood-requests">
+                        <div>Menunggu: <span>2</span></div>
+                        <div>Diproses: <span>1</span></div>
+                        <div>Selesai: <span>2</span></div>
+                    </div>
+                    <a href="permintaan_darah.html" class="btn">Buat Permintaan</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Pasien Membutuhkan</h3>
+                    <div class="patients-need">
+                        <div>A: <span>3</span> pasien</div>
+                        <div>B: <span>1</span> pasien</div>
+                        <div>AB: <span>0</span> pasien</div>
+                        <div>O: <span>2</span> pasien</div>
+                    </div>
+                    <a href="pasien.html" class="btn">Lihat Daftar</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Notifikasi Darurat</h3>
+                    <div class="emergency-notif">
+                        <div class="alert">2 pasien darurat membutuhkan darah segera!</div>
+                    </div>
+                    <a href="permintaan_darah.html?emergency=true" class="btn emergency-btn">Permintaan Darurat</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <!-- ... existing footer content ... -->
+    </footer>
+</body>
+</html>

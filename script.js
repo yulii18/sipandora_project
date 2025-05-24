@@ -599,3 +599,353 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePagination();
     }
 });
+
+// ===== Login Functionality =====
+document.addEventListener('DOMContentLoaded', function() {
+  // Cek jika di halaman login
+  if (document.getElementById('loginForm')) {
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      
+      // Validasi sederhana
+      if (!email || !password) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Email dan password harus diisi!',
+        });
+        return;
+      }
+      
+      // Simpan email jika remember me dicentang
+      if (remember) {
+        localStorage.setItem('rememberedEmail', email);
+      } else {
+        localStorage.removeItem('rememberedEmail');
+      }
+      
+      // Simulasi login berhasil
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Berhasil',
+        text: 'Anda akan diarahkan ke dashboard',
+        timer: 1500,
+        showConfirmButton: false
+      }).then(() => {
+        window.location.href = 'dashboard.html';
+      });
+    });
+  }
+  
+  // Cek jika di halaman registrasi
+  if (document.getElementById('registrationForm')) {
+    const registrationForm = document.getElementById('registrationForm');
+    
+    registrationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Ambil nilai input
+      const nik = document.getElementById('nik').value;
+      const nama = document.getElementById('nama').value;
+      const tempatLahir = document.getElementById('tempatLahir').value;
+      const tanggalLahir = document.getElementById('tanggalLahir').value;
+      const jenisKelamin = document.querySelector('input[name="jenisKelamin"]:checked')?.value;
+      const golonganDarah = document.getElementById('golonganDarah').value;
+      const alamat = document.getElementById('alamat').value;
+      const kelurahan = document.getElementById('kelurahan').value;
+      const kecamatan = document.getElementById('kecamatan').value;
+      const kota = document.getElementById('kota').value;
+      const pekerjaan = document.getElementById('pekerjaan').value;
+      
+      // Validasi sederhana
+      if (!nik || !nama || !tempatLahir || !tanggalLahir || !jenisKelamin || 
+          !golonganDarah || !alamat || !kelurahan || !kecamatan || !kota || !pekerjaan) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Semua field harus diisi!',
+        });
+        return;
+      }
+      
+      // Validasi NIK (16 digit)
+      if (nik.length !== 16 || !/^\d+$/.test(nik)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'NIK Tidak Valid',
+          text: 'NIK harus terdiri dari 16 digit angka',
+        });
+        return;
+      }
+      
+      // Simulasi registrasi berhasil
+      Swal.fire({
+        icon: 'success',
+        title: 'Registrasi Berhasil!',
+        text: 'Akun Anda telah berhasil dibuat',
+        timer: 1500,
+        showConfirmButton: false
+      }).then(() => {
+        window.location.href = 'dashboard.html';
+      });
+    });
+  }
+  
+  // ===== Dashboard Functionality =====
+  if (document.getElementById('logoutBtn')) {
+    // Simulasi data user
+    const userData = {
+      name: "John Doe",
+      lastDonation: "2023-10-15",
+      points: 120,
+      bloodType: "A"
+    };
+
+    // Isi data user
+    if (document.getElementById('userName')) {
+      document.getElementById('userName').textContent = userData.name;
+    }
+    
+    if (document.getElementById('lastDonationStatus')) {
+      if (userData.lastDonation) {
+        const lastDonationDate = new Date(userData.lastDonation);
+        document.getElementById('lastDonationStatus').textContent = 
+          `Terakhir donor: ${lastDonationDate.toLocaleDateString('id-ID')}`;
+        
+        // Hitung tanggal donor berikutnya (4 bulan setelah terakhir donor)
+        const nextDonationDate = new Date(lastDonationDate);
+        nextDonationDate.setMonth(nextDonationDate.getMonth() + 4);
+        if (document.getElementById('nextDonationDate')) {
+          document.getElementById('nextDonationDate').textContent = 
+            nextDonationDate.toLocaleDateString('id-ID');
+        }
+      }
+    }
+
+    if (document.getElementById('donationPoints')) {
+      document.getElementById('donationPoints').textContent = `${userData.points} Poin`;
+    }
+
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Keluar?',
+        text: "Anda yakin ingin keluar dari akun Anda?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#e63946',
+        cancelButtonColor: '#1d3557',
+        confirmButtonText: 'Ya, Keluar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  }
+  
+  // ===== Riwayat Donor Functionality =====
+  if (document.getElementById('riwayatList')) {
+    // Simulasi data user
+    const userData = {
+      totalDonor: 0,
+      totalPoin: 0,
+      nyawaDiselamatkan: 0
+    };
+
+    // Update summary
+    document.getElementById('totalDonor').textContent = `${userData.totalDonor} kali`;
+    document.getElementById('totalPoin').textContent = `${userData.totalPoin} poin`;
+    document.getElementById('nyawaDiselamatkan').textContent = userData.nyawaDiselamatkan;
+
+    // Filter functionality
+    const tahunFilter = document.getElementById('tahunFilter');
+    const lokasiFilter = document.getElementById('lokasiFilter');
+    const resetFilter = document.getElementById('resetFilter');
+
+    tahunFilter.addEventListener('change', applyFilters);
+    lokasiFilter.addEventListener('change', applyFilters);
+    
+    resetFilter.addEventListener('click', function() {
+      tahunFilter.value = 'semua';
+      lokasiFilter.value = 'semua';
+      applyFilters();
+    });
+
+    function applyFilters() {
+      // Dalam implementasi nyata, ini akan memfilter data dari server/database
+      console.log('Filter diterapkan:', {
+        tahun: tahunFilter.value,
+        lokasi: lokasiFilter.value
+      });
+    }
+  }
+  
+  // ===== Profile Page Functionality =====
+  if (document.getElementById('editProfileBtn')) {
+    document.getElementById('editProfileBtn').addEventListener('click', function() {
+      Swal.fire({
+        title: 'Edit Profil',
+        html: `
+          <form id="editProfileForm">
+            <div class="form-group">
+              <label for="editName">Nama Lengkap</label>
+              <input type="text" id="editName" class="swal2-input" placeholder="Nama" value="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="editEmail">Email</label>
+              <input type="email" id="editEmail" class="swal2-input" placeholder="Email" value="john.doe@example.com">
+            </div>
+            <div class="form-group">
+              <label for="editPhone">No. Telepon</label>
+              <input type="tel" id="editPhone" class="swal2-input" placeholder="No. Telepon" value="081234567890">
+            </div>
+          </form>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal',
+        preConfirm: () => {
+          const name = document.getElementById('editName').value;
+          const email = document.getElementById('editEmail').value;
+          const phone = document.getElementById('editPhone').value;
+          
+          if (!name || !email || !phone) {
+            Swal.showValidationMessage('Semua field harus diisi');
+            return false;
+          }
+          
+          return { name, email, phone };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Update data profil
+          document.getElementById('profileName').textContent = result.value.name;
+          document.getElementById('email').textContent = result.value.email;
+          document.getElementById('phone').textContent = result.value.phone;
+          
+          Swal.fire(
+            'Berhasil!',
+            'Profil Anda telah diperbarui',
+            'success'
+          );
+        }
+      });
+    });
+    
+    document.getElementById('changePasswordBtn').addEventListener('click', function() {
+      Swal.fire({
+        title: 'Ubah Kata Sandi',
+        html: `
+          <form id="changePasswordForm">
+            <div class="form-group">
+              <label for="currentPassword">Kata Sandi Saat Ini</label>
+              <input type="password" id="currentPassword" class="swal2-input" placeholder="Kata sandi saat ini">
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Kata Sandi Baru</label>
+              <input type="password" id="newPassword" class="swal2-input" placeholder="Kata sandi baru">
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Konfirmasi Kata Sandi Baru</label>
+              <input type="password" id="confirmPassword" class="swal2-input" placeholder="Konfirmasi kata sandi">
+            </div>
+          </form>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal',
+        preConfirm: () => {
+          const currentPassword = document.getElementById('currentPassword').value;
+          const newPassword = document.getElementById('newPassword').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          
+          if (!currentPassword || !newPassword || !confirmPassword) {
+            Swal.showValidationMessage('Semua field harus diisi');
+            return false;
+          }
+          
+          if (newPassword !== confirmPassword) {
+            Swal.showValidationMessage('Kata sandi baru tidak cocok');
+            return false;
+          }
+          
+          return { currentPassword, newPassword };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Berhasil!',
+            'Kata sandi Anda telah diubah',
+            'success'
+          );
+        }
+      });
+    });
+    
+    document.getElementById('deleteAccountBtn').addEventListener('click', function() {
+      Swal.fire({
+        title: 'Hapus Akun?',
+        text: "Anda tidak akan dapat mengembalikan akun ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e63946',
+        cancelButtonColor: '#1d3557',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Dihapus!',
+            'Akun Anda telah dihapus.',
+            'success'
+          ).then(() => {
+            window.location.href = 'index.html';
+          });
+        }
+      });
+    });
+  }
+});
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+const navLinks = document.querySelector(".nav-links");
+
+if (mobileMenuBtn && navLinks) {
+  mobileMenuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener('click', () => {
+    // Tutup menu mobile jika sedang aktif
+    if (navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+    }
+  });
+});
+
+// Active link based on current page
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+});

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permintaan Darah - SIPANDORA</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Same sidebar styles as dashboard -->
+</head>
+<body>
+    <!-- Sidebar Navigation (same as dashboard) -->
+     <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard_admin_rs.html" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
+            <li>
+                <a href="permintaan_darah.html">
+                    <i class="fas fa-tint"></i>
+                    <span>Permintaan Darah</span>
+                </a>
+            </li>
+            <li>
+                <a href="pasien.html">
+                    <i class="fas fa-procedures"></i>
+                    <span>Daftar Pasien</span>
+                </a>
+            </li>
+            <li>
+                <a href="riwayat_permintaan.html">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat Permintaan</span>
+                </a>
+            </li>
+            <li class="logout-btn">
+                <a href="../index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-tint"></i> Permintaan Darah</h1>
+                <button class="btn" id="newRequestBtn">
+                    <i class="fas fa-plus"></i> Permintaan Baru
+                </button>
+            </div>
+
+            <div class="blood-request-section">
+                <div class="request-filters">
+                    <select class="form-control">
+                        <option>Semua Status</option>
+                        <option>Menunggu</option>
+                        <option>Diproses</option>
+                        <option>Selesai</option>
+                    </select>
+                    <input type="text" placeholder="Cari..." class="form-control">
+                </div>
+
+                <div class="request-list">
+                    <div class="request-item urgent">
+                        <div class="request-header">
+                            <h3>Pasien Darurat - Kecelakaan</h3>
+                            <span class="status-badge">URGENT</span>
+                        </div>
+                        <div class="request-details">
+                            <p><i class="fas fa-tint"></i> Gol. Darah: <strong>A+</strong></p>
+                            <p><i class="fas fa-calendar"></i> Dibutuhkan: <strong>Hari Ini</strong></p>
+                            <p><i class="fas fa-user"></i> Pasien: <strong>Budi Santoso</strong></p>
+                            <p><i class="fas fa-hospital"></i> Ruangan: <strong>ICU 2</strong></p>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-small">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-small">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                    <!-- More request items would be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- New Request Modal -->
+    <div id="newRequestModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-plus-circle"></i> Buat Permintaan Darah Baru</h2>
+            <form id="bloodRequestForm">
+                <div class="form-group">
+                    <label for="patientName">Nama Pasien</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="bloodType">Golongan Darah</label>
+                    <select id="bloodType" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Jumlah (kantong)</label>
+                    <input type="number" id="quantity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Tingkat Urgensi</label>
+                    <select id="urgency">
+                        <option value="normal">Normal</option>
+                        <option value="urgent">Darurat</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-paper-plane"></i> Kirim Permintaan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal Handling
+        document.getElementById('newRequestBtn').addEventListener('click', function() {
+            document.getElementById('newRequestModal').style.display = 'block';
+        });
+
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('newRequestModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

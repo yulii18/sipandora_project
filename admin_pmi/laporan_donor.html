@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Donor - SIPANDORA</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard_admin_pmi.html">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+        </li>
+        <li>
+            <a href="laporan_donor.html" class="active">
+                <i class="fas fa-file-alt"></i>
+                <span>Laporan Donor</span>
+            </a>
+        </li>
+        <li>
+            <a href="stok_darah.html">
+                <i class="fas fa-tint"></i>
+                <span>Kelola Stok Darah</span>
+            </a>
+        </li>
+        <li>
+            <a href="kasus_darurat.html">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Kasus Darurat</span>
+            </a>
+        </li>
+        <li>
+            <a href="pengaturan.html">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan</span>
+            </a>
+        </li>
+        <li class="logout-btn">
+            <a href="../index.html">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-file-alt"></i> Laporan Donor Darah</h1>
+                <div class="page-actions">
+                    <select id="reportPeriod" class="form-control">
+                        <option value="today">Hari Ini</option>
+                        <option value="week">Minggu Ini</option>
+                        <option value="month">Bulan Ini</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
+                    <button id="generateReport" class="btn">
+                        <i class="fas fa-download"></i> Unduh Laporan
+                    </button>
+                </div>
+            </div>
+
+            <div class="report-data">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama Pendonor</th>
+                            <th>Gol. Darah</th>
+                            <th>Lokasi</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15/06/2023</td>
+                            <td>Budi Santoso</td>
+                            <td>A</td>
+                            <td>PMI Pusat</td>
+                            <td><span class="status-badge completed">Selesai</span></td>
+                        </tr>
+                        <!-- More rows would be dynamically generated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="scriptp.js"></script>
+</body>
+</html>
