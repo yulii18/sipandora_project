@@ -145,7 +145,7 @@
                   let redirectPage;
                   switch(role) {
                       case 'user':
-                          redirectPage = 'dashboard.html';
+                          redirectPage = 'user/dashboard.html';
                           break;
                       case 'admin_pmi':
                           redirectPage = 'admin_pmi/dashboard_admin_pmi.html';
@@ -154,7 +154,7 @@
                           redirectPage = 'admin_rs/dashboard_admin_rs.html';
                           break;
                       default:
-                          redirectPage = 'dashboard.html';
+                          redirectPage = 'user/dashboard.html';
                   }
                   
                   Swal.fire({

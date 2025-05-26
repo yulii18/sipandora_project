@@ -10,49 +10,22 @@
     <!-- Same sidebar styles as dashboard -->
 </head>
 <body>
-    <!-- Sidebar Navigation (same as dashboard) -->
- <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
-            <button class="sidebar-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        
-        <ul class="sidebar-menu">
-            <li>
-                <a href="dashboard_admin_rs.html" class="active">
-                    <i class="fas fa-home"></i>
-                    <span>Beranda</span>
-                </a>
-            </li>
-            <li>
-                <a href="permintaan_darah.html">
-                    <i class="fas fa-tint"></i>
-                    <span>Permintaan Darah</span>
-                </a>
-            </li>
-            <li>
-                <a href="pasien.html">
-                    <i class="fas fa-procedures"></i>
-                    <span>Daftar Pasien</span>
-                </a>
-            </li>
-            <li>
-                <a href="riwayat_permintaan.html">
-                    <i class="fas fa-history"></i>
-                    <span>Riwayat Permintaan</span>
-                </a>
-            </li>
-            <li class="logout-btn">
-                <a href="../index.html">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Keluar</span>
-                </a>
-            </li>
-        </ul>
+   <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+        <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard_admin_rs.html"><i class="fas fa-home"></i>Beranda</a></li>
+      <li><a href="permintaan_darah.html"><i class="fas fa-tint"></i>Permintaan Darah</a></li>
+      <li><a href="pasien.html" class="active"><i class="fas fa-procedures"></i>Daftar Pasien</a></li>
+      <li><a href="riwayat_permintaan.html"><i class="fas fa-history"></i>Riwayat Permintaan</a></li>
+      <li class="logout-btn"><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Keluar</a></li>
+    </ul>
+  </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -108,13 +81,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
-        </div>
-    </footer>
 
     <!-- Add Patient Modal -->
     <div id="addPatientModal" class="modal">

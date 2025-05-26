@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="stylesp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -43,7 +42,13 @@
         <li>
             <a href="kasus_darurat.html">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span>Permintaan Darah</span>
+                <span>Kasus Darurat</span>
+            </a>
+        </li>
+        <li>
+            <a href="pengaturan.html">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan</span>
             </a>
         </li>
         <li class="logout-btn">
@@ -57,103 +62,45 @@
 
     <!-- Main Content -->
     <div class="main-content">
-       <div class="container">
+        <div class="container">
             <div class="dashboard-welcome">
                 <h1>Selamat Datang, <span>Admin PMI</span>!</h1>
                 <p>Hari ini: <span>15 donor, 3 permintaan darah</span></p>
             </div>
 
             <div class="dashboard-cards">
-                <div class="chart-card">
+                <div class="dashboard-card">
                     <h3><i class="fas fa-chart-line"></i> Statistik Pendonor</h3>
-                    <canvas id="donorStatsChart"></canvas>
-                    <div style="margin-top: 1rem; text-align: right;">
-                        <button id="viewDonorReport" class="btn">
-                            <i class="fas fa-file-alt"></i> Lihat Laporan
-                        </button>
+                    <div class="stats">
+                        <div><i class="fas fa-users"></i> Total Pendonor: <span>1,245</span></div>
+                        <div><i class="fas fa-calendar-alt"></i> Donor Bulan Ini: <span>156</span></div>
+                        <div><i class="fas fa-calendar-day"></i> Donor Hari Ini: <span>15</span></div>
                     </div>
+                    <button id="viewDonorReport" class="btn">
+                        <i class="fas fa-file-alt"></i> Lihat Laporan
+                    </button>
                 </div>
-            </div>
-            
-            <!-- Blood Stock Table -->
-            <div class="dashboard-card">
-                <h3><i class="fas fa-table"></i> Detail Stok Darah</h3>
-                <table class="blood-stock-table">
-                    <thead>
-                        <tr>
-                            <th rowspan="2">Golongan Darah</th>
-                            <th colspan="3">Stok Darah</th>
-                            <th colspan="3">Darah Titip</th>
-                            <th rowspan="2">Karantina</th>
-                        </tr>
-                        <tr>
-                            <th>WB</th>
-                            <th>PRC</th>
-                            <th>TC</th>
-                            <th>WB</th>
-                            <th>PRC</th>
-                            <th>TC</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>A</td>
-                            <td>45</td><td>30</td><td>20</td>
-                            <td>10</td><td>8</td><td>7</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>B</td>
-                            <td>30</td><td>25</td><td>15</td>
-                            <td>8</td><td>5</td><td>4</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>AB</td>
-                            <td>15</td><td>12</td><td>8</td>
-                            <td>5</td><td>3</td><td>2</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>O</td>
-                            <td>60</td><td>45</td><td>30</td>
-                            <td>15</td><td>10</td><td>8</td>
-                            <td>7</td>
-                        </tr>
-                        <tr class="subtotal-row">
-                            <td>Subtotal</td>
-                            <td>150</td><td>112</td><td>73</td>
-                            <td>38</td><td>26</td><td>21</td>
-                            <td>17</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td>Total</td>
-                            <td colspan="3">335</td>
-                            <td colspan="3">85</td>
-                            <td>17</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <!-- Emergency Cases Cards -->
-            <div class="dashboard-card">
-                <h3><i class="fas fa-exclamation-triangle"></i> Permintaan Darah</h3>
-                <div class="emergency-cards">
-                    <div class="emergency-card">
-                        <h4>Kasus Hari Ini</h4>
-                        <p>3</p>
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-tint"></i> Stok Darah</h3>
+                    <div class="blood-stock">
+                        <div class="blood-type">A: <span>120</span> kantong</div>
+                        <div class="blood-type">B: <span>85</span> kantong</div>
+                        <div class="blood-type">AB: <span>45</span> kantong</div>
+                        <div class="blood-type">O: <span>150</span> kantong</div>
                     </div>
-                    <div class="emergency-card">
-                        <h4>Sedang Diproses</h4>
-                        <p class="pending">2</p>
-                    </div>
-                    <div class="emergency-card">
-                        <h4>Terselesaikan</h4>
-                        <p class="completed">1</p>
-                    </div>
+                    <button id="manageBloodStock" class="btn">
+                        <i class="fas fa-edit"></i> Kelola Stok
+                    </button>
                 </div>
-                <div style="margin-top: 1rem; text-align: right;">
+
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Kasus Darurat</h3>
+                    <div class="emergency-cases">
+                        <div><i class="fas fa-calendar-day"></i> Kasus Hari Ini: <span>3</span></div>
+                        <div><i class="fas fa-spinner"></i> Sedang Diproses: <span>2</span></div>
+                        <div><i class="fas fa-check-circle"></i> Terselesaikan: <span>1</span></div>
+                    </div>
                     <button id="viewEmergencyCases" class="btn">
                         <i class="fas fa-search"></i> Lihat Detail
                     </button>
@@ -263,7 +210,7 @@
     <div id="emergencyCasesModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2><i class="fas fa-exclamation-triangle"></i> Permintaan Darah</h2>
+            <h2><i class="fas fa-exclamation-triangle"></i> Kasus Darurat</h2>
             <div class="modal-body">
                 <div class="emergency-list">
                     <div class="emergency-item urgent">
