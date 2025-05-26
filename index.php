@@ -1,3 +1,21 @@
+<?php if (isset($_SESSION['logout_success'])): ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            title: 'Logout Berhasil!',
+            text: 'Anda telah keluar dari sistem.',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            timerProgressBar: true
+        });
+    });
+</script>
+<?php 
+    unset($_SESSION['logout_success']);
+endif; 
+?>
+
 <!doctype html>
 <html lang="id">
   <head>
@@ -19,7 +37,7 @@
             <li><a href="#donor">Donor Darah</a></li>
             <li><a href="#about">Tentang Kami</a></li>
             <li><a href="#contact">Kontak</a></li>
-            <li><a href="login.html" class="btn" >Masuk</a></li>
+            <li><a href="login.php" class="btn" >Masuk</a></li>
           </ul>
         </nav>
       </div>
