@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard Admin RS - SIPANDORA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin PMI - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="stylesr.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
 <!-- Sidebar Navigation -->
 <div class="sidebar">
     <div class="sidebar-header">
-        <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
+        <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
         <button class="sidebar-toggle">
             <i class="fas fa-bars"></i>
         </button>
@@ -22,7 +24,7 @@
     
     <ul class="sidebar-menu">
         <li>
-            <a href="dashboard_admin_pmi.html" class="active">
+            <a href="dashboard_admin_rs.html" class="active">
                 <i class="fas fa-home"></i>
                 <span>Beranda</span>
             </a>
@@ -30,19 +32,19 @@
         <li>
             <a href="laporan_donor.html">
                 <i class="fas fa-file-alt"></i>
-                <span>Permintaan Darah</span>
+                <span>Laporan Donor</span>
             </a>
         </li>
         <li>
             <a href="stok_darah.html">
                 <i class="fas fa-tint"></i>
-                <span>Daftar Pasien</span>
+                <span>Kelola Stok Darah</span>
             </a>
         </li>
         <li>
-            <a href="kasus_darurat.html">
+            <a href="permintaan_darah.html">
                 <i class="fas fa-exclamation-triangle"></i>
-                <span>Riwayat Permintaan</span>
+                <span>Permintaan Darah</span>
             </a>
         </li>
         <li class="logout-btn">
@@ -53,114 +55,244 @@
         </li>
     </ul>
 </div>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="sidebar-header">
-        <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
-        <button class="sidebar-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-    <ul class="sidebar-menu">
-      <li><a href="dashboard_admin_rs.html" class="active"><i class="fas fa-home"></i>Beranda</a></li>
-      <li><a href="permintaan_darah.html"><i class="fas fa-tint"></i>Permintaan Darah</a></li>
-      <li><a href="pasien.html"><i class="fas fa-procedures"></i>Daftar Pasien</a></li>
-      <li><a href="riwayat_permintaan.html"><i class="fas fa-history"></i>Riwayat Permintaan</a></li>
-      <li class="logout-btn"><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Keluar</a></li>
-    </ul>
-  </div>
 
-  <!-- Main -->
-  <div class="main-content">
-    <div class="container">
-    <div class="dashboard-welcome">
-      <h1>Selamat Datang, <span>Admin Rumah Sakit</span>!</h1>
-      <p>Hari ini: <strong>5 permintaan darah, 2 darurat</strong></p>
-    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+       <div class="container">
+            <div class="dashboard-welcome">
+                <h1>Selamat Datang, <span>Admin RS</span>!</h1>
+                <p>Hari ini: <span>1 donor, 3 permintaan darah</span></p>
+            </div>
 
-    <div class="dashboard-cards">
-      <!-- Card 1: Permintaan Darah -->
-      <div class="dashboard-card">
-        <h3><i class="fas fa-tint"></i> Permintaan Darah</h3>
-        <div class="blood-requests">
-          <div><span><i class="fas fa-clock"></i> Menunggu</span><span>2</span></div>
-          <div><span><i class="fas fa-spinner"></i> Diproses</span><span>1</span></div>
-          <div><span><i class="fas fa-check-circle"></i> Selesai</span><span>2</span></div>
-        </div>
-        <a href="permintaan_darah.html" class="btn"><i class="fas fa-plus"></i> Buat Permintaan</a>
-      </div>
-
-      <!-- Card 2: Pasien Membutuhkan -->
-      <div class="dashboard-card">
-        <h3><i class="fas fa-procedures"></i> Pasien Membutuhkan</h3>
-        <div class="patients-need">
-          <div><span>A</span><span>3 pasien</span></div>
-          <div><span>B</span><span>1 pasien</span></div>
-          <div><span>AB</span><span>0 pasien</span></div>
-          <div><span>O</span><span>2 pasien</span></div>
-        </div>
-        <a href="pasien.html" class="btn"><i class="fas fa-list"></i> Lihat Daftar</a>
-      </div>
-
-      <!-- Card 3: Notifikasi Darurat -->
-      <div class="dashboard-card">
-        <h3><i class="fas fa-exclamation-triangle"></i> Notifikasi Darurat</h3>
-        <div class="alert"><i class="fas fa-bell"></i> 2 pasien darurat membutuhkan darah segera!</div>
-        <a href="permintaan_darah.html?emergency=true" class="btn emergency-btn">
-          <i class="fas fa-bolt"></i> Permintaan Darurat
-        </a>
-      </div>
-    </div>
-    </div>
-  </div>
-
-  <script src="/scriptr.js"></script>
-  <script>
-    // Admin Dashboard Functions
-function initializeAdminDashboard() {
-    // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const adminSidebar = document.querySelector('.admin-sidebar');
-    
-    if (mobileMenuToggle && adminSidebar) {
-        mobileMenuToggle.addEventListener('click', function() {
-            adminSidebar.classList.toggle('active');
-        });
-    }
-    
-    // Set active menu item
-    const currentPage = window.location.pathname.split('/').pop();
-    const menuItems = document.querySelectorAll('.admin-sidebar-menu a');
-    
-    menuItems.forEach(item => {
-        const itemHref = item.getAttribute('href').split('/').pop();
-        if (itemHref === currentPage) {
-            item.classList.add('active');
-        }
-        
-        item.addEventListener('click', function() {
-            menuItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
+            <div class="dashboard-cards">
+                <div class="chart-card">
+                    <h3><i class="fas fa-chart-line"></i> Statistik Pendonor</h3>
+                    <canvas id="donorStatsChart"></canvas>
+                    <div style="margin-top: 1rem; text-align: right;">
+                        <button id="viewDonorReport" class="btn">
+                            <i class="fas fa-file-alt"></i> Lihat Laporan
+                        </button>
+                    </div>
+                </div>
+            </div>
             
-            // Close sidebar on mobile after selection
-            if (window.innerWidth <= 768) {
-                adminSidebar.classList.remove('active');
-            }
-        });
-    });
-    
-    // Simulate data loading
-    setTimeout(() => {
-        document.querySelector('.admin-main-content').style.opacity = '1';
-    }, 300);
-}
+            <!-- Blood Stock Table -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-table"></i> Detail Stok Darah</h3>
+                <table class="blood-stock-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Golongan Darah</th>
+                            <th colspan="3">Stok Darah</th>
+                            <th colspan="3">Darah Titip</th>
+                            <th rowspan="2">Karantina</th>
+                        </tr>
+                        <tr>
+                            <th>WB</th>
+                            <th>PRC</th>
+                            <th>TC</th>
+                            <th>WB</th>
+                            <th>PRC</th>
+                            <th>TC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>22</td><td>1</td><td>10</td>
+                            <td>0</td><td>4</td><td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>10</td><td>5</td><td>0</td>
+                            <td>0</td><td>0</td><td>5</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>AB</td>
+                            <td>7</td><td>0</td><td>0</td>
+                            <td>1</td><td>0</td><td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>O</td>
+                            <td>14</td><td>0</td><td>4</td>
+                            <td>8</td><td>4</td><td>3</td>
+                            <td>5</td>
+                        </tr>
+                        <tr class="subtotal-row">
+                            <td>Subtotal</td>
+                            <td>53</td><td>6</td><td>14</td>
+                            <td>9</td><td>8</td><td>8</td>
+                            <td>11</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>Total</td>
+                            <td colspan="3">73</td>
+                            <td colspan="3">25</td>
+                            <td>11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-// Call this when the admin page loads
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.querySelector('.admin-container')) {
-        initializeAdminDashboard();
-    }
-});
-  </script>
+            <!-- Emergency Cases Cards -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> Permintaan Darah</h3>
+                <div class="emergency-cards">
+                    <div class="emergency-card">
+                        <h4>Kasus Hari Ini</h4>
+                        <p>3</p>
+                    </div>
+                    <div class="emergency-card">
+                        <h4>Sedang Diproses</h4>
+                        <p class="pending">2</p>
+                    </div>
+                    <div class="emergency-card">
+                        <h4>Terselesaikan</h4>
+                        <p class="completed">1</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; text-align: right;">
+                    <button id="viewEmergencyCases" class="btn">
+                        <i class="fas fa-search"></i> Lihat Detail
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Modals/Popups -->
+    <div id="donorReportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-file-alt"></i> Laporan Donor Darah</h2>
+            <div class="modal-body">
+                <div class="report-filter">
+                    <select id="reportPeriod">
+                        <option value="today">Hari Ini</option>
+                        <option value="week">Minggu Ini</option>
+                        <option value="month">Bulan Ini</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
+                    <button id="generateReport" class="btn">
+                        <i class="fas fa-download"></i> Unduh Laporan
+                    </button>
+                </div>
+                <div class="report-data">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Nama Pendonor</th>
+                                <th>Gol. Darah</th>
+                                <th>Lokasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr>
+                                <td>15/06/2023</td>
+                                <td>Budi Santoso</td>
+                                <td>A</td>
+                                <td>PMI Pusat</td>
+                            </tr> -->
+                            <!-- More rows would be dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bloodStockModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-tint"></i> Kelola Stok Darah</h2>
+            <div class="modal-body">
+                <div class="stock-controls">
+                    <div class="stock-form">
+                        <h3>Tambah Stok Darah</h3>
+                        <form id="addStockForm">
+                            <div class="form-group">
+                                <label for="bloodType">Golongan Darah</label>
+                                <select id="bloodType" required>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Jumlah (kantong)</label>
+                                <input type="number" id="quantity" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiryDate">Tanggal Kadaluarsa</label>
+                                <input type="date" id="expiryDate" required>
+                            </div>
+                            <button type="submit" class="btn">
+                                <i class="fas fa-plus"></i> Tambah Stok
+                            </button>
+                        </form>
+                    </div>
+                    <div class="current-stock">
+                        <h3>Stok Saat Ini</h3>
+                        <div class="stock-levels">
+                            <div class="stock-item">
+                                <span class="blood-type">A</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                                <span class="stock-count">120 kantong</span>
+                            </div>
+                            <!-- Other blood types would be listed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergencyCasesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-exclamation-triangle"></i> Permintaan Darah</h2>
+            <div class="modal-body">
+                <div class="emergency-list">
+                    <div class="emergency-item urgent">
+                        <div class="emergency-header">
+                            <h3>Pasien Kecelakaan</h3>
+                            <span class="status-badge">URGENT</span>
+                        </div>
+                        <div class="emergency-details">
+                            <p><i class="fas fa-tint"></i> Gol. Darah: <strong>A+</strong></p>
+                            <p><i class="fas fa-map-marker-alt"></i> RS. Siloam</p>
+                            <p><i class="fas fa-clock"></i> Dilaporkan: 15:30 WIB</p>
+                        </div>
+                        <div class="emergency-actions">
+                            <button class="btn btn-small">
+                                <i class="fas fa-check"></i> Tandai Diproses
+                            </button>
+                            <button class="btn btn-small">
+                                <i class="fas fa-phone"></i> Hubungi RS
+                            </button>
+                        </div>
+                    </div>
+                    <!-- More emergency cases would be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script src="scriptr.js"></script>
 </body>
 </html>

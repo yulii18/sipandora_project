@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Stok Darah - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="stylesp.css">
+    <link rel="stylesheet" href="stylesr.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Tambahkan SweetAlert -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         /* Tambahan styling untuk tabel stok darah */
         .blood-stock-table {
@@ -39,6 +38,7 @@
 
         .total-row {
             background-color: #e74c3c;
+            color: rgb(0, 0, 0);
             font-weight: bold;
         }
 
@@ -61,7 +61,7 @@
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
+            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
             <button class="sidebar-toggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -69,7 +69,7 @@
         
         <ul class="sidebar-menu">
             <li>
-                <a href="dashboard_admin_pmi.html">
+                <a href="dashboard_admin_rs.html">
                     <i class="fas fa-home"></i>
                     <span>Beranda</span>
                 </a>
@@ -217,78 +217,11 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script src="scriptp.js"></script>
+    <script src="scriptr.js"></script>
     <script>
-        
-// Event listener untuk form penambahan stok
-document.addEventListener('DOMContentLoaded', function() {
-    const addStockForm = document.getElementById('addStockForm');
-    
-    if (addStockForm) {
-        addStockForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            console.log("Form submitted"); // Debugging
-            
-            const bloodType = document.getElementById('bloodType').value;
-            const component = document.getElementById('bloodComponent').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const expiryDate = document.getElementById('expiryDate').value;
-
-            // Validasi dasar
-            if (!bloodType || !component || isNaN(quantity) || !expiryDate) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Mohon lengkapi semua field dengan benar',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-                return;
-            }
-
-            // Tampilkan konfirmasi
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: `Anda akan menambahkan ${quantity} kantong darah ${bloodType} (${component})?`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Tambahkan',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Update data
-                    if (!bloodStockData[bloodType]) {
-                        bloodStockData[bloodType] = { WB: 0, PRC: 0, TC: 0 };
-                    }
-                    
-                    bloodStockData[bloodType][component] += quantity;
-                    
-                    // Update tampilan
-                    updateBloodStockTable();
-                    
-                    // Notifikasi sukses
-                    Swal.fire({
-                        title: 'Berhasil!',
-                        text: `Stok darah telah ditambahkan`,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-                    
-                    // Reset form
-                    addStockForm.reset();
-                    document.getElementById('expiryDate').value = '';
-                }
-            });
-        });
-    }
-});
-
-        // Fungsi untuk menghitung tanggal kadaluarsa
-        function setupExpiryDate() {
+        // Script untuk menghitung tanggal kadaluarsa otomatis
+        document.addEventListener('DOMContentLoaded', function() {
             const bloodComponentSelect = document.getElementById('bloodComponent');
             const expiryDateInput = document.getElementById('expiryDate');
             
@@ -311,135 +244,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         return;
                 }
                 
-                expiryDateInput.value = expiryDate.toISOString().split('T')[0];
+                const formattedDate = expiryDate.toISOString().split('T')[0];
+                expiryDateInput.value = formattedDate;
             });
-        }
-
-        // Fungsi untuk update tabel stok darah
-        function updateBloodStockTable(bloodType, bloodComponent, quantity) {
-            const table = document.querySelector('.blood-stock-table');
-            if (!table) {
-                console.error('Tabel tidak ditemukan');
-                return;
-            }
-
-            const rows = table.querySelectorAll('tbody tr');
-            let targetRow = null;
-
-            // Cari baris yang sesuai dengan golongan darah (lewati baris header)
-            for (let i = 0; i < 4; i++) { // Hanya cek 4 baris pertama (A, B, AB, O)
-                const firstCell = rows[i].cells[0];
-                if (firstCell && firstCell.textContent.trim() === bloodType) {
-                    targetRow = rows[i];
-                    break;
-                }
-            }
-
-            if (!targetRow) {
-                console.error('Golongan darah tidak ditemukan di tabel');
-                return;
-            }
-
-            // Tentukan kolom berdasarkan jenis darah
-            let columnIndex;
-            switch(bloodComponent) {
-                case 'WB': columnIndex = 1; break;
-                case 'PRC': columnIndex = 2; break;
-                case 'TC': columnIndex = 3; break;
-                default: {
-                    console.error('Jenis darah tidak valid');
+            
+            document.getElementById('addStockForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Validasi form
+                if (!this.checkValidity()) {
+                    alert('Harap lengkapi semua field yang diperlukan!');
                     return;
                 }
-            }
-
-            // Update nilai
-            const quantityNum = parseInt(quantity);
-            if (isNaN(quantityNum)) {
-                console.error('Jumlah tidak valid');
-                return;
-            }
-
-            const currentCell = targetRow.cells[columnIndex];
-            const currentValue = parseInt(currentCell.textContent) || 0;
-            currentCell.textContent = currentValue + quantityNum;
-
-            // Update total
-            updateTotals();
-        }
-
-        function updateTotals() {
-            const table = document.querySelector('.blood-stock-table');
-            if (!table) return;
-
-            const rows = table.querySelectorAll('tbody tr');
-            let subtotals = [0, 0, 0, 0, 0, 0, 0]; // Untuk 7 kolom stok
-
-            // Hitung hanya baris data (A, B, AB, O)
-            for (let i = 0; i < 4; i++) {
-                const row = rows[i];
-                for (let j = 1; j <= 7; j++) { // Kolom 1-7
-                    subtotals[j-1] += parseInt(row.cells[j].textContent) || 0;
-                }
-            }
-
-            // Update subtotal (baris ke-5)
-            const subtotalRow = rows[4];
-            for (let j = 1; j <= 7; j++) {
-                subtotalRow.cells[j].textContent = subtotals[j-1];
-            }
-
-            // Update total (baris terakhir)
-            const totalRow = rows[5];
-            const totalStok = subtotals[0] + subtotals[1] + subtotals[2]; // WB+PRC+TC
-            const totalTitip = subtotals[3] + subtotals[4] + subtotals[5]; // WB+PRC+TC titip
-            
-            totalRow.cells[1].textContent = totalStok;
-            totalRow.cells[4].textContent = totalTitip;
-            // Kolom karantina (index 7) tidak diubah karena bukan bagian dari input
-        }
-
-        // Inisialisasi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            setupExpiryDate();
-            
-            // Event listener untuk form
-            const form = document.getElementById('addStockForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const bloodType = document.getElementById('bloodType').value;
-                    const bloodComponent = document.getElementById('bloodComponent').value;
-                    const quantity = document.getElementById('quantity').value;
-                    const expiryDate = document.getElementById('expiryDate').value;
-
-                    if (!bloodType || !bloodComponent || !quantity || !expiryDate) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Harap lengkapi semua field!'
-                        });
-                        return;
-                    }
-
-                    // Update tabel
-                    updateBloodStockTable(bloodType, bloodComponent, quantity);
-                    
-                    // Notifikasi sukses
-                    Swal.fire({
-                        title: 'Berhasil!',
-                        text: `Stok darah ${bloodType} ${bloodComponent} berhasil ditambahkan sebanyak ${quantity} kantong`,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-
-                    // Reset form
-                    form.reset();
-                    document.getElementById('expiryDate').value = '';
-                });
-            }
+                
+                // Simulasi pengiriman data
+                alert('Stok darah berhasil ditambahkan!');
+                this.reset();
+            });
         });
     </script>
-
 </body>
 </html>
