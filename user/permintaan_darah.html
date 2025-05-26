@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Permintaan Darah - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header sama seperti dashboard.html -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
-                <button class="mobile-menu-btn">☰</button>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html">Beranda</a></li>
-                    <li><a href="riwayat_donor.html">Riwayat Donor</a></li>
-                    <li><a href="permintaan_darah.html" class="active">Permintaan Darah</a></li>
-                    <li><a href="profile.html">Profil Saya</a></li>
-                    <li><a href="index.html" id="logoutBtn" class="btn">Keluar</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </header>
+        
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Beranda</span></a></li>
+            <li><a href="riwayat_donor.html"><i class="fas fa-history"></i><span>Riwayat Donor</span></a></li>
+            <li><a href="daftar_donor.html"><i class="fas fa-tint"></i><span>Daftar Donor</span></a></li>
+            <li><a href="permintaan_darah.html" class="active"><i class="fas fa-ambulance"></i><span>Permintaan Darah</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Profil Saya</span></a></li>
+            <li class="logout-btn"><a href="../index.php"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></a></li>
+        </ul>
+    </div>
 
-    <section class="daftar-donor-section">
+    <!-- Main Content -->
+    <div class="main-content">
         <div class="container">
-            <div class="section-header">
+            <div class="dashboard-welcome">
                 <h1>Permintaan Darah</h1>
                 <p>Temukan permintaan darah terbaru di sekitar Anda</p>
             </div>
-            
-            <div class="search-filter-container">
+
+            <div class="dashboard-cards">
                 <div class="search-box">
                     <input type="text" placeholder="Cari berdasarkan nama atau lokasi...">
                     <button type="button"><i class="fas fa-search"></i></button>
@@ -72,7 +76,7 @@
                 </div>
             </div>
             
-            <div class="donor-list-container">
+            <div class="dashboard-cards">
                 <div class="no-donor" id="noRequestData">
                     <i class="fas fa-tint fa-4x"></i>
                     <h3>Tidak Ada Permintaan Darah Saat Ini</h3>
@@ -84,14 +88,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer sama seperti dashboard.html -->
-    <footer>
-        <div class="container">
-            <!-- Footer content -->
-        </div>
-    </footer>
+    </div>
 
     <script src="../script.js"></script>
 </body>

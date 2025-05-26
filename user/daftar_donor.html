@@ -5,148 +5,281 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Donor - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
-                <button class="mobile-menu-btn">☰</button>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html">Beranda</a></li>
-                    <li><a href="riwayat_donor.html">Riwayat Donor</a></li>
-                    <li><a href="daftar_donor.html" class="active">Daftar Donor</a></li>
-                    <li><a href="profile.html">Profil Saya</a></li>
-                    <li><a href="#" id="logoutBtn" class="btn">Keluar</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </header>
+        
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Beranda</span></a></li>
+            <li><a href="riwayat_donor.html"><i class="fas fa-history"></i><span>Riwayat Donor</span></a></li>
+            <li><a href="daftar_donor.html" class="active"><i class="fas fa-tint"></i><span>Daftar Donor</span></a></li>
+            <li><a href="permintaan_darah.html"><i class="fas fa-ambulance"></i><span>Permintaan Darah</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Profil Saya</span></a></li>
+            <li class="logout-btn"><a href="../index.php"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></a></li>
+        </ul>
+    </div>
 
-    <!-- Daftar Donor Section -->
-    <section class="daftar-donor-section">
+    <!-- Main Content -->
+    <div class="main-content">
         <div class="container">
-            <div class="section-header">
+            <div class="dashboard-welcome">
                 <h1>Daftar Donor Darah</h1>
-                <p>Temukan pendonor darah berdasarkan kriteria yang Anda butuhkan</p>
+                <p>Bergabunglah menjadi pendonor darah dan selamatkan nyawa</p>
             </div>
 
-            <div class="search-filter-container">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Cari berdasarkan nama atau lokasi...">
-                    <button id="searchBtn"><i class="fas fa-search"></i></button>
-                </div>
-
-                <div class="filter-options">
-                    <div class="filter-group">
-                        <label for="bloodTypeFilter">Golongan Darah:</label>
-                        <select id="bloodTypeFilter">
-                            <option value="semua">Semua</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="AB">AB</option>
-                            <option value="O">O</option>
-                        </select>
+            <!-- Informasi Donor Section -->
+            <div class="donor-info-section">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Persyaratan Donor</h3>
+                        <ul>
+                            <li>Usia 17-60 tahun</li>
+                            <li>Berat badan ≥ 45 kg</li>
+                            <li>Sehat jasmani dan rohani</li>
+                            <li>Tidak sedang sakit/demam</li>
+                        </ul>
                     </div>
-
-                    <div class="filter-group">
-                        <label for="cityFilter">Kota:</label>
-                        <select id="cityFilter">
-                            <option value="semua">Semua Kota</option>
-                            <option value="palu">Palu</option>
-                            <option value="jakarta">Jakarta</option>
-                            <option value="bandung">Bandung</option>
-                        </select>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Waktu Donor</h3>
+                        <ul>
+                            <li>Senin - Jumat: 08.00 - 16.00</li>
+                            <li>Sabtu: 08.00 - 12.00</li>
+                            <li>Minggu & Hari Libur: Tutup</li>
+                        </ul>
                     </div>
-
-                    <div class="filter-group">
-                        <label for="availabilityFilter">Ketersediaan:</label>
-                        <select id="availabilityFilter">
-                            <option value="semua">Semua</option>
-                            <option value="tersedia">Siap Donor</option>
-                            <option value="baru-donor">Baru Donor</option>
-                        </select>
-                    </div>
-
-                    <button id="resetFilter" class="btn-outline">Reset Filter</button>
-                </div>
-            </div>
-
-            <div class="donor-stats">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <h3>Total Pendonor</h3>
-                        <p id="totalDonors">0</p>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Lokasi Donor</h3>
+                        <ul>
+                            <li>UTD PMI Kartini</li>
+                            <li>RSUD Undata</li>
+                            <li>RSUD Anutapura</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-tint"></i>
-                    <div>
-                        <h3>Tersedia Hari Ini</h3>
-                        <p id="availableToday">0</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Lokasi Tersedia</h3>
-                        <p id="availableLocations">0</p>
-                    </div>
+            
+                <div class="donor-action">
+                    <h2>Siap untuk mendonor?</h2>
+                    <p>Klik tombol di bawah untuk mulai mengisi formulir pendaftaran donor darah</p>
+                    <button id="showDonorForm" class="btn btn-primary btn-large">
+                        <i class="fas fa-tint"></i> Daftar Donor Sekarang
+                    </button>
                 </div>
             </div>
 
-            <div class="donor-list-container">
-                <div class="no-donor" id="noDonorData">
-                    <i class="fas fa-user-slash fa-3x"></i>
-                    <h3>Tidak Ada Data Pendonor</h3>
-                    <p>Belum ada pendonor yang terdaftar dengan kriteria yang Anda pilih</p>
-                </div>
+            <!-- Form Section (Hidden by default) -->
+            <div id="donorFormSection" class="donor-form-container" style="display: none;">
+                <form id="donorForm" class="donor-form">
+                    <div class="form-section">
+                        <h2>Data Diri</h2>
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap:</label>
+                            <input type="text" id="nama" name="nama" required>
+                        </div>
 
-                <div class="donor-list" id="donorList">
-                    <!-- Data donor akan dimasukkan di sini oleh JavaScript -->
-                </div>
+                        <div class="form-group">
+                            <label for="gender">Jenis Kelamin:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="laki-laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                        </div>
 
-                <div class="pagination">
-                    <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
-                    <span id="pageInfo">Halaman 1 dari 1</span>
-                    <button id="nextPage" disabled><i class="fas fa-chevron-right"></i></button>
-                </div>
+                        <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir:</label>
+                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="golongan_darah">Golongan Darah:</label>
+                            <select id="golongan_darah" name="golongan_darah" required>
+                                <option value="">Pilih Golongan Darah</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="AB">AB</option>
+                                <option value="O">O</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="umur">Umur:</label>
+                            <input type="number" id="umur" name="umur" min="17" max="60" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">Alamat Lengkap:</label>
+                            <textarea id="alamat" name="alamat" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telepon">No. Telepon/HP:</label>
+                            <input type="tel" id="telepon" name="telepon" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email (opsional):</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Kriteria Kesehatan</h2>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="kriteria[]" value="berat_badan" required>
+                                Berat badan ≥ 45 kg
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="kriteria[]" value="tidur" required>
+                                Tidur minimal 5 jam tadi malam
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="kriteria[]" value="flu" required>
+                                Tidak sedang flu/demam
+                            </label>
+                            <label class="checkbox-label" id="hamilLabel" style="display: none;">
+                                <input type="checkbox" name="kriteria[]" value="hamil">
+                                Tidak sedang hamil/menyusui
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Pertanyaan Skrining</h2>
+                        <div class="radio-group-vertical">
+                            <div class="skrining-item">
+                                <label>Apakah Anda pernah terkena hepatitis B/C atau HIV?</label>
+                                <div class="radio-options">
+                                    <label><input type="radio" name="hepatitis" value="ya" required> Ya</label>
+                                    <label><input type="radio" name="hepatitis" value="tidak"> Tidak</label>
+                                </div>
+                            </div>
+                            <div class="skrining-item">
+                                <label>Apakah Anda memiliki riwayat penyakit jantung/diabetes?</label>
+                                <div class="radio-options">
+                                    <label><input type="radio" name="jantung" value="ya" required> Ya</label>
+                                    <label><input type="radio" name="jantung" value="tidak"> Tidak</label>
+                                </div>
+                            </div>
+                            <div class="skrining-item">
+                                <label>Apakah Anda sedang minum obat tertentu?</label>
+                                <div class="radio-options">
+                                    <label><input type="radio" name="obat" value="ya" required> Ya</label>
+                                    <label><input type="radio" name="obat" value="tidak"> Tidak</label>
+                                </div>
+                            </div>
+                            <div class="skrining-item">
+                                <label>Apakah Anda baru saja membuat tato/tindik (<6 bulan)?</label>
+                                <div class="radio-options">
+                                    <label><input type="radio" name="tato" value="ya" required> Ya</label>
+                                    <label><input type="radio" name="tato" value="tidak"> Tidak</label>
+                                </div>
+                            </div>
+                            <div class="skrining-item">
+                                <label>Apakah Anda baru saja operasi/transfusi darah (<1 tahun)?</label>
+                                <div class="radio-options">
+                                    <label><input type="radio" name="operasi" value="ya" required> Ya</label>
+                                    <label><input type="radio" name="operasi" value="tidak"> Tidak</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Lokasi Donor</h2>
+                        <div class="form-group">
+                            <label for="lokasi_donor">Pilih Lokasi Donor:</label>
+                            <select id="lokasi_donor" name="lokasi_donor" required>
+                                <option value="">Pilih Lokasi</option>
+                                <option value="utd_pmi">UTD PMI Kartini</option>
+                                <option value="rsud_undata">RSUD Undata</option>
+                                <option value="rsud_anutapura">RSUD Anutapura</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Pernyataan</h2>
+                        <p class="pernyataan-text">
+                            Saya menyatakan bahwa informasi di atas benar. Saya bersedia mendonor darah secara sukarela.
+                        </p>
+                    </div>
+
+                    <div class="form-notes">
+                        <p><strong>Catatan:</strong></p>
+                        <ul>
+                            <li>Formulir ini hanya untuk pengisian mandiri oleh pendonor.</li>
+                            <li>Pemeriksaan tekanan darah, hemoglobin, dan persetujuan akhir tetap dilakukan oleh petugas medis.</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Kirim Formulir</button>
+                        <button type="button" class="btn btn-outline" onclick="cancelForm()">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Tentang SIPANDORA</h3>
-                    <p>Sistem Informasi Pendonor Darah untuk memudahkan masyarakat dalam mendonorkan darah dan mencari donor.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Kontak Darurat</h3>
-                    <p><i class="fas fa-phone"></i> 119 - Ambulans</p>
-                    <p><i class="fas fa-phone"></i> 118 - Bencana</p>
-                    <p><i class="fas fa-phone"></i> 117 - Posko Darurat</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Link Cepat</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="donor-darah.html">Info Donor Darah</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
+</div>
 
     <script src="../script.js"></script>
+    <script>
+    document.getElementById('showDonorForm').addEventListener('click', function() {
+        document.getElementById('donorFormSection').style.display = 'block';
+        this.parentElement.style.display = 'none';
+        window.scrollTo({
+            top: document.getElementById('donorFormSection').offsetTop,
+            behavior: 'smooth'
+        });
+    });
+    
+    document.getElementById('donorForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const modal = document.getElementById('successModal');
+        modal.classList.add('show');
+        
+        setTimeout(function() {
+            window.location.href = 'dashboard.html';
+        }, 2000);
+    });
+    
+    function cancelForm() {
+        document.getElementById('donorFormSection').style.display = 'none';
+        document.querySelector('.donor-action').style.display = 'block';
+        window.scrollTo({
+            top: document.querySelector('.donor-info-section').offsetTop,
+            behavior: 'smooth'
+        });
+        document.getElementById('donorForm').reset();
+    }
+    
+    // Tampilkan checkbox hamil hanya untuk perempuan
+    document.getElementById('gender').addEventListener('change', function() {
+        document.getElementById('hamilLabel').style.display = 
+            this.value === 'perempuan' ? 'block' : 'none';
+    });
+    </script>
 </body>
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <i class="fas fa-check-circle"></i>
+        <h2>Formulir Berhasil Dikirim!</h2>
+        <p>Anda akan diarahkan ke halaman beranda...</p>
+    </div>
+</div>
 </html>

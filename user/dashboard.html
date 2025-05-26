@@ -5,101 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="stylesu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header dengan menu khusus user -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
-                <button class="mobile-menu-btn">☰</button>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html" class="active">Beranda</a></li>
-                    <li><a href="riwayat_donor.html">Riwayat Donor</a></li>
-                    <li><a href="permintaan_darah.html">Permintaan Darah</a></li>
-                    <li><a href="profile.html">Profil Saya</a></li>
-                    <li><a href="index.html" id="logoutBtn" class="btn">Keluar</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </header>
+        
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i><span>Beranda</span></a></li>
+            <li><a href="riwayat_donor.html"><i class="fas fa-history"></i><span>Riwayat Donor</span></a></li>
+            <li><a href="daftar_donor.html"><i class="fas fa-tint"></i><span>Daftar Donor</span></a></li>
+            <li><a href="permintaan_darah.html"><i class="fas fa-ambulance"></i><span>Permintaan Darah</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Profil Saya</span></a></li>
+            <li class="logout-btn"><a href="../index.php"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></a></li>
+        </ul>
+    </div>
 
-    <!-- Dashboard Content -->
-    <section class="dashboard-section">
+    <!-- Main Content -->
+    <div class="main-content">
         <div class="container">
             <div class="dashboard-welcome">
                 <h1>Selamat Datang, <span id="userName">User</span>!</h1>
                 <p>Status donor terakhir: <span id="lastDonationStatus">Belum pernah donor</span></p>
             </div>
-
-            <div class="dashboard-cards">
-                <div class="dashboard-card">
-                    <h3>Donor Berikutnya</h3>
-                    <p id="nextDonationDate">-</p>
-                    <a href="daftar_donor.html" class="btn">Jadwalkan Donor</a>
+    
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <h3>Donor Berikutnya</h3>
+                        <p id="nextDonationDate">-</p>
+                        <a href="daftar_donor.html" class="btn">Jadwalkan Donor</a>
+                    </div>
+    
+                    <div class="dashboard-card">
+                        <h3>Permintaan Darah Terdekat</h3>
+                        <p id="bloodRequestsCount">0 permintaan</p>
+                        <a href="permintaan_darah.html" class="btn">Lihat Semua</a>
+                    </div>
+                </div>
+    
+                <div class="quick-actions">
+                    <h2>Aksi Cepat</h2>
+                    <div class="action-buttons">
+                        <a href="emergency.html" class="btn emergency-btn">Darah Darurat</a>
+                        <a href="find-donor.html" class="btn">Cari Pendonor</a>
+                        <a href="find-pmi.html" class="btn">Donor Pengganti</a>
+                    </div>
                 </div>
 
-                <div class="dashboard-card">
-                    <h3>Permintaan Darah Terdekat</h3>
-                    <p id="bloodRequestsCount">0 permintaan</p>
-                    <a href="permintaan_darah.html" class="btn">Lihat Semua</a>
+                <!-- Jadwal Donor Section -->
+                <div class="donor-schedule" id="userDonorSchedule">
+                    <h2>Jadwal Donor Saya</h2>
+                    <div class="schedule-info" id="noSchedule" style="display: none;">
+                        <p>Anda belum memiliki jadwal donor. <a href="daftar_donor.html" class="btn-link">Daftar sekarang</a></p>
+                    </div>
+                    <div class="schedule-card" id="activeSchedule" style="display: none;">
+                        <div class="schedule-status">
+                            <span class="status-badge">Terjadwal</span>
+                        </div>
+                        <div class="schedule-details">
+                            <h3 id="scheduledLocation">-</h3>
+                            <p><i class="fas fa-calendar"></i> <span id="scheduledDate">-</span></p>
+                            <p><i class="fas fa-clock"></i> <span id="scheduledTime">-</span></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <span id="scheduledAddress">-</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="quick-actions">
-                <h2>Aksi Cepat</h2>
-                <div class="action-buttons">
-                    <a href="emergency.html" class="btn emergency-btn">Darah Darurat</a>
-                    <a href="find-donor.html" class="btn">Cari Pendonor</a>
-                    <a href="find-pmi.html" class="btn">Donor Pengganti</a>
+        </section>
+    
+        <!-- Footer -->
+        <footer>
+          <div class="container">
+            <div class="footer-content">
+              <div class="footer-column">
+                <h3>Tentang Kami</h3>
+                <p>
+                  SIPANDORA adalah platform inovatif yang menghubungkan pendonor
+                  darah dengan mereka yang membutuhkan.
+                </p>
+                <div class="social-links">
+                  <a href="https://web.facebook.com/palangmerah/about?locale=id_ID" target="_blank"><span>FB</span></a>
+                  <a href="https://youtube.com/@pmi_tv?si=LvQ3QXdxt2JyqkKn" target="_blank"><span>YT</span></a>
+                  <a href="https://www.instagram.com/palangmerah_indonesia?igsh=a3l2bnR2Nmw2YXVm" target="_blank"><span>IG</span></a>
+                  <a href="https://www.pmi.or.id/" target="_blank"><span>WEB</span></a>
                 </div>
+              </div>
+    
+              <div class="footer-column">
+                <h3>Layanan</h3>
+                <ul class="footer-links">
+                  <li><a href="permintaan_darah.html">Pencarian Darah</a></li>
+                  <li><a href="daftar_donor.html">Pendaftaran Donor</a></li>
+                  <li><a href="jadwal_donor.html">Jadwal Donor</a></li>
+                  <li><a href="#">Informasi Kesehatan</a></li>
+                </ul>
+              </div>
+    
+              <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <p><strong>Alamat:</strong> Jl. Kartini No. 20, Lolu Selatan, Kec. Palu Selatan, Kota Palu, Sulawesi Tengah 94235</p>
+                <p><strong>Email:</strong> info@sipandora.id</p>
+                <p><strong>Telepon:</strong> (021) 1234-5678</p>
+                <p><strong>Darurat:</strong> 119 (24 Jam)</p>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-column">
-            <h3>Tentang Kami</h3>
-            <p>
-              SIPANDORA adalah platform inovatif yang menghubungkan pendonor
-              darah dengan mereka yang membutuhkan.
-            </p>
-            <div class="social-links">
-              <a href="https://web.facebook.com/palangmerah/about?locale=id_ID" target="_blank"><span>FB</span></a>
-              <a href="https://youtube.com/@pmi_tv?si=LvQ3QXdxt2JyqkKn" target="_blank"><span>YT</span></a>
-              <a href="https://www.instagram.com/palangmerah_indonesia?igsh=a3l2bnR2Nmw2YXVm" target="_blank"><span>IG</span></a>
-              <a href="https://www.pmi.or.id/" target="_blank"><span>WEB</span></a>
+    
+            <div class="footer-bottom">
+              <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
             </div>
           </div>
+        </footer>
+    
+        <script src="../script.js"></script>
+    </div>
 
-          <div class="footer-column">
-            <h3>Layanan</h3>
-            <ul class="footer-links">
-              <li><a href="permintaan_darah.html">Pencarian Darah</a></li>
-              <li><a href="daftar_donor.html">Pendaftaran Donor</a></li>
-              <li><a href="jadwal_donor.html">Jadwal Donor</a></li>
-              <li><a href="#">Informasi Kesehatan</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>Kontak Kami</h3>
-            <p><strong>Alamat:</strong> Jl. Kartini No. 20, Lolu Selatan, Kec. Palu Selatan, Kota Palu, Sulawesi Tengah 94235</p>
-            <p><strong>Email:</strong> info@sipandora.id</p>
-            <p><strong>Telepon:</strong> (021) 1234-5678</p>
-            <p><strong>Darurat:</strong> 119 (24 Jam)</p>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2023 SIPANDORA. Semua Hak Dilindungi.</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="../script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Simulasi pengecekan jadwal donor (nanti diganti dengan data dari database)
+        const hasSchedule = false; // Ganti dengan pengecekan ke database
+        const scheduleData = {
+            location: 'UTD PMI Kartini',
+            date: '20 Januari 2024',
+            time: '08:00 - 11:00 WIB',
+            address: 'Jl. Kartini No. 20, Palu'
+        };
+    
+        const noScheduleElement = document.getElementById('noSchedule');
+        const activeScheduleElement = document.getElementById('activeSchedule');
+    
+        if (hasSchedule) {
+            // Tampilkan jadwal aktif
+            activeScheduleElement.style.display = 'block';
+            noScheduleElement.style.display = 'none';
+    
+            // Isi data jadwal
+            document.getElementById('scheduledLocation').textContent = scheduleData.location;
+            document.getElementById('scheduledDate').textContent = scheduleData.date;
+            document.getElementById('scheduledTime').textContent = scheduleData.time;
+            document.getElementById('scheduledAddress').textContent = scheduleData.address;
+        } else {
+            // Tampilkan pesan belum ada jadwal
+            noScheduleElement.style.display = 'block';
+            activeScheduleElement.style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>
