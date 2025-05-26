@@ -614,26 +614,46 @@ body.modal-open {
   color: #555;
 }
 
+/* Add this to your styles.css */
 .input-with-icon {
   position: relative;
 }
 
-.input-with-icon i {
+.input-with-icon input {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-with-icon .input-icon {
   position: absolute;
-  left: 12px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--primary-color);
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  height: 100%;
 }
 
-.input-with-icon input {
-  padding-left: 40px !important;
-  height: 40px;
+.input-with-icon .fa-envelope {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
 }
+.input-with-icon .toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.input-with-icon .toggle-password:hover {
+  color: #333;
+}
+
 
 .form-options {
   display: flex;
