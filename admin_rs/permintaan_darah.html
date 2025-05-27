@@ -9,70 +9,318 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #f1faee;
+            --accent-color: #a8dadc;
+            --dark-color: #1d3557;
+            --light-color: #ffffff;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--dark-color);
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--light-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--light-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-menu li a.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #c1121f;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        /* Emergency Cases */
+        .emergency-item {
+            background-color: white;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .emergency-item.urgent {
+            border-left-color: #e63946;
+        }
+
+        .emergency-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .status-badge {
+            background-color: #e63946;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .emergency-details p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .emergency-details i {
+            margin-right: 8px;
+            width: 16px;
+            color: var(--primary-color);
+        }
+
+        .emergency-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        /* Form Styles */
+        #bloodRequestForm {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* SweetAlert Override */
+        .swal2-container {
+            z-index: 2100 !important;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar Navigation -->
-<div class="sidebar">
-    <div class="sidebar-header">
-        <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
-        <button class="sidebar-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
 
-    <ul class="sidebar-menu">
-        <li>
-            <a href="dashboard_admin_rs.html">
-                <i class="fas fa-home"></i>
-                <span>Beranda</span>
-            </a>
-        </li>
-        <li>
-            <a href="laporan_donor.html">
-                <i class="fas fa-file-alt"></i>
-                <span>Laporan Donor</span>
-            </a>
-        </li>
-        <li>
-            <a href="stok_darah.html">
-                <i class="fas fa-tint"></i>
-                <span>Kelola Stok Darah</span>
-            </a>
-        </li>
-        <li>
-            <a href="permintaan_darah.html" class="active">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>Permintaan Darah</span>
-            </a>
-        </li>
-        <li class="logout-btn">
-            <a href="../logout.php">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Keluar</span>
-            </a>
-        </li>
-    </ul>
-</div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard_admin_rs.html">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
+            <li>
+                <a href="laporan_donor.html">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan Donor</span>
+                </a>
+            </li>
+            <li>
+                <a href="stok_darah.html">
+                    <i class="fas fa-tint"></i>
+                    <span>Kelola Stok Darah</span>
+                </a>
+            </li>
+            <li>
+                <a href="permintaan_darah.html" class="active">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Permintaan Darah</span>
+                </a>
+            </li>
+            <li class="logout-btn">
+                <a href="../logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="container">
             <div class="page-header">
                 <h1><i class="fas fa-exclamation-triangle"></i> Permintaan Darah Hari Ini</h1>
+                <button class="btn" id="addRequestBtn">
+                    <i class="fas fa-plus"></i> Tambah Permintaan Darah
+                </button>
             </div>
 
             <div class="emergency-cases-container">
                 <div class="emergency-list">
                     <div class="emergency-item urgent">
                         <div class="emergency-header">
-                            <h3>Pasien Kecelakaan</h3>
+                            <h3>Pasien Kecelakaan - Agus Susanto</h3>
                             <span class="status-badge">URGENT</span>
                         </div>
                         <div class="emergency-details">
+                            <p><i class="fas fa-user"></i> Nama Pasien: <strong>Agus Susanto</strong></p>
                             <p><i class="fas fa-tint"></i> Gol. Darah: <strong>A+</strong></p>
                             <p><i class="fas fa-map-marker-alt"></i> RS. Siloam</p>
                             <p><i class="fas fa-clock"></i> Dilaporkan: 15:30 WIB</p>
-                            <p><i class="fas fa-user"></i> Dokter Penanggung Jawab: Dr. Andi</p>
+                            <p><i class="fas fa-user-md"></i> Dokter Penanggung Jawab: Dr. Andi</p>
                         </div>
                         <div class="emergency-actions">
                             <button class="btn btn-small">
@@ -83,7 +331,6 @@
                             </button>
                         </div>
                     </div>
-                    <!-- More emergency cases would be listed here -->
                 </div>
             </div>
         </div>
@@ -96,8 +343,179 @@
         </div>
     </footer>
 
-    <script src="../script.js"></script>
-    <script src="scriptr.js"></script>
+    <!-- Modal untuk Tambah Permintaan Darah -->
+    <div id="requestBloodModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-tint"></i> Form Permintaan Darah</h2>
+            
+            <form id="bloodRequestForm">
+                <div class="form-group">
+                    <label for="caseType">Jenis Kasus</label>
+                    <input type="text" id="caseType" placeholder="Contoh: Pasien Kecelakaan" required>
+                </div>
 
+                <div class="form-group">
+                    <label for="patientName">Nama Pasien</label>
+                    <input type="text" id="patientName" placeholder="Contoh: Agus Susanto" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bloodType">Golongan Darah</label>
+                    <select id="bloodType" required>
+                        <option value="">Pilih Golongan Darah</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hospital">Rumah Sakit</label>
+                    <input type="text" id="hospital" placeholder="Nama Rumah Sakit" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="doctor">Dokter Penanggung Jawab</label>
+                    <input type="text" id="doctor" placeholder="Nama Dokter" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Tingkat Urgensi</label>
+                    <select id="urgency" required>
+                        <option value="">Pilih Tingkat Urgensi</option>
+                        <option value="URGENT">Urgent</option>
+                        <option value="REGULAR">Regular</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Submit Permintaan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal Handling
+            const requestModal = document.getElementById('requestBloodModal');
+            const addRequestBtn = document.getElementById('addRequestBtn');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Open modal
+            addRequestBtn.addEventListener('click', function() {
+                requestModal.style.display = 'block';
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                requestModal.style.display = 'none';
+            });
+            
+            // Close when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === requestModal) {
+                    requestModal.style.display = 'none';
+                }
+            });
+
+            // Form Submission
+            document.getElementById('bloodRequestForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    patientName: document.getElementById('patientName').value,
+                    caseType: document.getElementById('caseType').value,
+                    bloodType: document.getElementById('bloodType').value,
+                    hospital: document.getElementById('hospital').value,
+                    doctor: document.getElementById('doctor').value,
+                    urgency: document.getElementById('urgency').value,
+                    timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB'
+                };
+
+                // Validate form
+                if (!formData.patientName || !formData.caseType || !formData.bloodType || 
+                    !formData.hospital || !formData.doctor || !formData.urgency) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Semua field harus diisi',
+                        icon: 'error',
+                        confirmButtonColor: '#e63946'
+                    });
+                    return;
+                }
+
+                // Show success notification (will appear above modal)
+                Swal.fire({
+                    title: 'Permintaan Darah Berhasil!',
+                    html: `
+                        <div style="text-align:left; margin-top:10px;">
+                            <p><b>Nama Pasien:</b> ${formData.patientName}</p>
+                            <p><b>Jenis Kasus:</b> ${formData.caseType}</p>
+                            <p><b>Gol. Darah:</b> ${formData.bloodType}</p>
+                            <p><b>Rumah Sakit:</b> ${formData.hospital}</p>
+                        </div>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Tutup',
+                    confirmButtonColor: '#e63946',
+                    didOpen: () => {
+                        // Hide modal temporarily while notification is shown
+                        requestModal.style.display = 'none';
+                    },
+                    willClose: () => {
+                        // Show modal again if user clicks outside notification
+                        requestModal.style.display = 'block';
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Reset form and close modal
+                        this.reset();
+                        requestModal.style.display = 'none';
+                        
+                        // Add new case to list
+                        addEmergencyCase(formData);
+                    }
+                });
+            });
+
+            // Function to add new emergency case
+            function addEmergencyCase(data) {
+                const emergencyList = document.querySelector('.emergency-list');
+                const newCase = document.createElement('div');
+                newCase.className = `emergency-item ${data.urgency === 'URGENT' ? 'urgent' : ''}`;
+                
+                newCase.innerHTML = `
+                    <div class="emergency-header">
+                        <h3>${data.caseType} - ${data.patientName}</h3>
+                        <span class="status-badge">${data.urgency}</span>
+                    </div>
+                    <div class="emergency-details">
+                        <p><i class="fas fa-user"></i> Nama Pasien: <strong>${data.patientName}</strong></p>
+                        <p><i class="fas fa-tint"></i> Gol. Darah: <strong>${data.bloodType}</strong></p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${data.hospital}</p>
+                        <p><i class="fas fa-clock"></i> Dilaporkan: ${data.timestamp}</p>
+                        <p><i class="fas fa-user-md"></i> Dokter Penanggung Jawab: ${data.doctor}</p>
+                    </div>
+                    <div class="emergency-actions">
+                        <button class="btn btn-small">
+                            <i class="fas fa-check"></i> Tandai Diproses
+                        </button>
+                        <button class="btn btn-small">
+                            <i class="fas fa-phone"></i> Hubungi RS
+                        </button>
+                    </div>
+                `;
+                
+                // Add new case at the beginning of the list
+                emergencyList.insertBefore(newCase, emergencyList.firstChild);
+            }
+        });
+    </script>
 </body>
 </html>
