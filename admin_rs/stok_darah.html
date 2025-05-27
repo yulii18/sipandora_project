@@ -3,254 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Permintaan Darah - SIPANDORA</title>
+    <title>Kelola Stok Darah - SIPANDORA</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="stylesr.css">
+    <link rel="stylesheet" href="../admin_pmi/stylesp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Tambahkan SweetAlert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #e63946;
-            --secondary-color: #f1faee;
-            --accent-color: #a8dadc;
-            --dark-color: #1d3557;
-            --light-color: #ffffff;
-            --sidebar-width: 250px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background-color: var(--dark-color);
-            color: white;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .sidebar-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--light-color);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 0;
-        }
-
-        .sidebar-menu li a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: var(--light-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-menu li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .sidebar-menu li a.active {
-            background-color: var(--primary-color);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 15px auto;
-            padding: 15px;
-        }
-
-        /* Header */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--light-color);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: #c1121f;
-            transform: translateY(-2px);
-        }
-
-        .btn-small {
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-
-        /* Emergency Cases */
-        .emergency-item {
-            background-color: white;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .emergency-item.urgent {
-            border-left-color: #e63946;
-        }
-
-        .emergency-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .status-badge {
-            background-color: #e63946;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .emergency-details p {
-            margin: 5px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .emergency-details i {
-            margin-right: 8px;
-            width: 16px;
-            color: var(--primary-color);
-        }
-
-        .emergency-actions {
-            display: flex;
-            gap: 10px;
+        /* Tambahan styling untuk tabel stok darah */
+        .blood-stock-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 15px;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 50px auto;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-
-        /* Form Styles */
-        #bloodRequestForm {
-            display: grid;
-            gap: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px;
+        .blood-stock-table th, 
+        .blood-stock-table td {
             border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        /* SweetAlert Override */
-        .swal2-container {
-            z-index: 2100 !important;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 20px 0;
+            padding: 8px 12px;
             text-align: center;
-            margin-top: 50px;
+        }
+
+        .blood-stock-table thead {
+            background-color: #f8f9fa;
+        }
+
+        .blood-stock-table th {
+            font-weight: 600;
+        }
+
+        .subtotal-row {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .total-row {
+            background-color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* Container untuk form dan tabel */
+        .stock-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stock-form-container, .stock-table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
         }
     </style>
 </head>
@@ -258,15 +61,15 @@
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <a href="dashboard_admin_rs.html" class="logo">SIPAN<span>DORA</span></a>
+            <a href="dashboard_admin_pmi.html" class="logo">SIPAN<span>DORA</span></a>
             <button class="sidebar-toggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-
+        
         <ul class="sidebar-menu">
             <li>
-                <a href="dashboard_admin_rs.html">
+                <a href="dashboard_admin_pmi.html">
                     <i class="fas fa-home"></i>
                     <span>Beranda</span>
                 </a>
@@ -278,13 +81,13 @@
                 </a>
             </li>
             <li>
-                <a href="stok_darah.html">
+                <a href="stok_darah.html" class="active">
                     <i class="fas fa-tint"></i>
                     <span>Kelola Stok Darah</span>
                 </a>
             </li>
             <li>
-                <a href="permintaan_darah.html" class="active">
+                <a href="permintaan_darah.html">
                     <i class="fas fa-exclamation-triangle"></i>
                     <span>Permintaan Darah</span>
                 </a>
@@ -302,35 +105,106 @@
     <div class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1><i class="fas fa-exclamation-triangle"></i> Permintaan Darah Hari Ini</h1>
-                <button class="btn" id="addRequestBtn">
-                    <i class="fas fa-plus"></i> Tambah Permintaan Darah
-                </button>
+                <h1><i class="fas fa-tint"></i> Kelola Stok Darah</h1>
             </div>
 
-            <div class="emergency-cases-container">
-                <div class="emergency-list">
-                    <div class="emergency-item urgent">
-                        <div class="emergency-header">
-                            <h3>Pasien Kecelakaan - Agus Susanto</h3>
-                            <span class="status-badge">URGENT</span>
+            <div class="stock-container">
+                <!-- Form Tambah Stok Darah -->
+                <div class="stock-form-container">
+                    <h2><i class="fas fa-plus-circle"></i> Tambah Stok Darah</h2>
+                    <form id="addStockForm">
+                        <div class="form-group">
+                            <label for="bloodType">Golongan Darah</label>
+                            <select id="bloodType" required>
+                                <option value="">Pilih Golongan Darah</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="AB">AB</option>
+                                <option value="O">O</option>
+                            </select>
                         </div>
-                        <div class="emergency-details">
-                            <p><i class="fas fa-user"></i> Nama Pasien: <strong>Agus Susanto</strong></p>
-                            <p><i class="fas fa-tint"></i> Gol. Darah: <strong>A+</strong></p>
-                            <p><i class="fas fa-map-marker-alt"></i> RS. Siloam</p>
-                            <p><i class="fas fa-clock"></i> Dilaporkan: 15:30 WIB</p>
-                            <p><i class="fas fa-user-md"></i> Dokter Penanggung Jawab: Dr. Andi</p>
+                        <div class="form-group">
+                            <label for="bloodComponent">Jenis Darah</label>
+                            <select id="bloodComponent" required>
+                                <option value="">Pilih Jenis Darah</option>
+                                <option value="WB">Whole Blood (WB)</option>
+                                <option value="PRC">Packed Red Cell (PRC)</option>
+                                <option value="TC">Thrombocyte Concentrate (TC)</option>
+                            </select>
                         </div>
-                        <div class="emergency-actions">
-                            <button class="btn btn-small">
-                                <i class="fas fa-check"></i> Tandai Diproses
-                            </button>
-                            <button class="btn btn-small">
-                                <i class="fas fa-phone"></i> Hubungi RS
-                            </button>
+                        <div class="form-group">
+                            <label for="quantity">Jumlah (kantong)</label>
+                            <input type="number" id="quantity" min="1" required>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="expiryDate">Tanggal Kadaluarsa</label>
+                            <input type="date" id="expiryDate" readonly>
+                        </div>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-plus"></i> Tambah Stok
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Tabel Stok Darah -->
+                <div class="stock-table-container">
+                    <h2><i class="fas fa-table"></i> Detail Stok Darah</h2>
+                    <table class="blood-stock-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Golongan Darah</th>
+                                <th colspan="3">Stok Darah</th>
+                                <th colspan="3">Darah Titip</th>
+                                <th rowspan="2">Karantina</th>
+                            </tr>
+                            <tr>
+                                <th>WB</th>
+                                <th>PRC</th>
+                                <th>TC</th>
+                                <th>WB</th>
+                                <th>PRC</th>
+                                <th>TC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A</td>
+                                <td>45</td><td>30</td><td>20</td>
+                                <td>10</td><td>8</td><td>7</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>30</td><td>25</td><td>15</td>
+                                <td>8</td><td>5</td><td>4</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>AB</td>
+                                <td>15</td><td>12</td><td>8</td>
+                                <td>5</td><td>3</td><td>2</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>O</td>
+                                <td>60</td><td>45</td><td>30</td>
+                                <td>15</td><td>10</td><td>8</td>
+                                <td>7</td>
+                            </tr>
+                            <tr class="subtotal-row">
+                                <td>Subtotal</td>
+                                <td>150</td><td>112</td><td>73</td>
+                                <td>38</td><td>26</td><td>21</td>
+                                <td>17</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td>Total</td>
+                                <td colspan="3">335</td>
+                                <td colspan="3">85</td>
+                                <td>17</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -343,179 +217,229 @@
         </div>
     </footer>
 
-    <!-- Modal untuk Tambah Permintaan Darah -->
-    <div id="requestBloodModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2><i class="fas fa-tint"></i> Form Permintaan Darah</h2>
-            
-            <form id="bloodRequestForm">
-                <div class="form-group">
-                    <label for="caseType">Jenis Kasus</label>
-                    <input type="text" id="caseType" placeholder="Contoh: Pasien Kecelakaan" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="patientName">Nama Pasien</label>
-                    <input type="text" id="patientName" placeholder="Contoh: Agus Susanto" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="bloodType">Golongan Darah</label>
-                    <select id="bloodType" required>
-                        <option value="">Pilih Golongan Darah</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="hospital">Rumah Sakit</label>
-                    <input type="text" id="hospital" placeholder="Nama Rumah Sakit" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="doctor">Dokter Penanggung Jawab</label>
-                    <input type="text" id="doctor" placeholder="Nama Dokter" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="urgency">Tingkat Urgensi</label>
-                    <select id="urgency" required>
-                        <option value="">Pilih Tingkat Urgensi</option>
-                        <option value="URGENT">Urgent</option>
-                        <option value="REGULAR">Regular</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn">Submit Permintaan</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="scriptp.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Modal Handling
-            const requestModal = document.getElementById('requestBloodModal');
-            const addRequestBtn = document.getElementById('addRequestBtn');
-            const closeModal = document.querySelector('.close-modal');
+        
+// Event listener untuk form penambahan stok
+document.addEventListener('DOMContentLoaded', function() {
+    const addStockForm = document.getElementById('addStockForm');
+    
+    if (addStockForm) {
+        addStockForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Open modal
-            addRequestBtn.addEventListener('click', function() {
-                requestModal.style.display = 'block';
-            });
+            console.log("Form submitted"); // Debugging
             
-            // Close modal
-            closeModal.addEventListener('click', function() {
-                requestModal.style.display = 'none';
-            });
-            
-            // Close when clicking outside
-            window.addEventListener('click', function(e) {
-                if (e.target === requestModal) {
-                    requestModal.style.display = 'none';
+            const bloodType = document.getElementById('bloodType').value;
+            const component = document.getElementById('bloodComponent').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const expiryDate = document.getElementById('expiryDate').value;
+
+            // Validasi dasar
+            if (!bloodType || !component || isNaN(quantity) || !expiryDate) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Mohon lengkapi semua field dengan benar',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
+
+            // Tampilkan konfirmasi
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: `Anda akan menambahkan ${quantity} kantong darah ${bloodType} (${component})?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Tambahkan',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Update data
+                    if (!bloodStockData[bloodType]) {
+                        bloodStockData[bloodType] = { WB: 0, PRC: 0, TC: 0 };
+                    }
+                    
+                    bloodStockData[bloodType][component] += quantity;
+                    
+                    // Update tampilan
+                    updateBloodStockTable();
+                    
+                    // Notifikasi sukses
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: `Stok darah telah ditambahkan`,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    
+                    // Reset form
+                    addStockForm.reset();
+                    document.getElementById('expiryDate').value = '';
                 }
             });
+        });
+    }
+});
 
-            // Form Submission
-            document.getElementById('bloodRequestForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+        // Fungsi untuk menghitung tanggal kadaluarsa
+        function setupExpiryDate() {
+            const bloodComponentSelect = document.getElementById('bloodComponent');
+            const expiryDateInput = document.getElementById('expiryDate');
+            
+            bloodComponentSelect.addEventListener('change', function() {
+                const today = new Date();
+                let expiryDate = new Date();
                 
-                // Get form data
-                const formData = {
-                    patientName: document.getElementById('patientName').value,
-                    caseType: document.getElementById('caseType').value,
-                    bloodType: document.getElementById('bloodType').value,
-                    hospital: document.getElementById('hospital').value,
-                    doctor: document.getElementById('doctor').value,
-                    urgency: document.getElementById('urgency').value,
-                    timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB'
-                };
+                switch(this.value) {
+                    case 'WB':
+                        expiryDate.setDate(today.getDate() + 35);
+                        break;
+                    case 'PRC':
+                        expiryDate.setDate(today.getDate() + 21);
+                        break;
+                    case 'TC':
+                        expiryDate.setDate(today.getDate() + 5);
+                        break;
+                    default:
+                        expiryDateInput.value = '';
+                        return;
+                }
+                
+                expiryDateInput.value = expiryDate.toISOString().split('T')[0];
+            });
+        }
 
-                // Validate form
-                if (!formData.patientName || !formData.caseType || !formData.bloodType || 
-                    !formData.hospital || !formData.doctor || !formData.urgency) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Semua field harus diisi',
-                        icon: 'error',
-                        confirmButtonColor: '#e63946'
-                    });
+        // Fungsi untuk update tabel stok darah
+        function updateBloodStockTable(bloodType, bloodComponent, quantity) {
+            const table = document.querySelector('.blood-stock-table');
+            if (!table) {
+                console.error('Tabel tidak ditemukan');
+                return;
+            }
+
+            const rows = table.querySelectorAll('tbody tr');
+            let targetRow = null;
+
+            // Cari baris yang sesuai dengan golongan darah (lewati baris header)
+            for (let i = 0; i < 4; i++) { // Hanya cek 4 baris pertama (A, B, AB, O)
+                const firstCell = rows[i].cells[0];
+                if (firstCell && firstCell.textContent.trim() === bloodType) {
+                    targetRow = rows[i];
+                    break;
+                }
+            }
+
+            if (!targetRow) {
+                console.error('Golongan darah tidak ditemukan di tabel');
+                return;
+            }
+
+            // Tentukan kolom berdasarkan jenis darah
+            let columnIndex;
+            switch(bloodComponent) {
+                case 'WB': columnIndex = 1; break;
+                case 'PRC': columnIndex = 2; break;
+                case 'TC': columnIndex = 3; break;
+                default: {
+                    console.error('Jenis darah tidak valid');
                     return;
                 }
+            }
 
-                // Show success notification (will appear above modal)
-                Swal.fire({
-                    title: 'Permintaan Darah Berhasil!',
-                    html: `
-                        <div style="text-align:left; margin-top:10px;">
-                            <p><b>Nama Pasien:</b> ${formData.patientName}</p>
-                            <p><b>Jenis Kasus:</b> ${formData.caseType}</p>
-                            <p><b>Gol. Darah:</b> ${formData.bloodType}</p>
-                            <p><b>Rumah Sakit:</b> ${formData.hospital}</p>
-                        </div>
-                    `,
-                    icon: 'success',
-                    confirmButtonText: 'Tutup',
-                    confirmButtonColor: '#e63946',
-                    didOpen: () => {
-                        // Hide modal temporarily while notification is shown
-                        requestModal.style.display = 'none';
-                    },
-                    willClose: () => {
-                        // Show modal again if user clicks outside notification
-                        requestModal.style.display = 'block';
+            // Update nilai
+            const quantityNum = parseInt(quantity);
+            if (isNaN(quantityNum)) {
+                console.error('Jumlah tidak valid');
+                return;
+            }
+
+            const currentCell = targetRow.cells[columnIndex];
+            const currentValue = parseInt(currentCell.textContent) || 0;
+            currentCell.textContent = currentValue + quantityNum;
+
+            // Update total
+            updateTotals();
+        }
+
+        function updateTotals() {
+            const table = document.querySelector('.blood-stock-table');
+            if (!table) return;
+
+            const rows = table.querySelectorAll('tbody tr');
+            let subtotals = [0, 0, 0, 0, 0, 0, 0]; // Untuk 7 kolom stok
+
+            // Hitung hanya baris data (A, B, AB, O)
+            for (let i = 0; i < 4; i++) {
+                const row = rows[i];
+                for (let j = 1; j <= 7; j++) { // Kolom 1-7
+                    subtotals[j-1] += parseInt(row.cells[j].textContent) || 0;
+                }
+            }
+
+            // Update subtotal (baris ke-5)
+            const subtotalRow = rows[4];
+            for (let j = 1; j <= 7; j++) {
+                subtotalRow.cells[j].textContent = subtotals[j-1];
+            }
+
+            // Update total (baris terakhir)
+            const totalRow = rows[5];
+            const totalStok = subtotals[0] + subtotals[1] + subtotals[2]; // WB+PRC+TC
+            const totalTitip = subtotals[3] + subtotals[4] + subtotals[5]; // WB+PRC+TC titip
+            
+            totalRow.cells[1].textContent = totalStok;
+            totalRow.cells[4].textContent = totalTitip;
+            // Kolom karantina (index 7) tidak diubah karena bukan bagian dari input
+        }
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            setupExpiryDate();
+            
+            // Event listener untuk form
+            const form = document.getElementById('addStockForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const bloodType = document.getElementById('bloodType').value;
+                    const bloodComponent = document.getElementById('bloodComponent').value;
+                    const quantity = document.getElementById('quantity').value;
+                    const expiryDate = document.getElementById('expiryDate').value;
+
+                    if (!bloodType || !bloodComponent || !quantity || !expiryDate) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Harap lengkapi semua field!'
+                        });
+                        return;
                     }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Reset form and close modal
-                        this.reset();
-                        requestModal.style.display = 'none';
-                        
-                        // Add new case to list
-                        addEmergencyCase(formData);
-                    }
+
+                    // Update tabel
+                    updateBloodStockTable(bloodType, bloodComponent, quantity);
+                    
+                    // Notifikasi sukses
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: `Stok darah ${bloodType} ${bloodComponent} berhasil ditambahkan sebanyak ${quantity} kantong`,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Reset form
+                    form.reset();
+                    document.getElementById('expiryDate').value = '';
                 });
-            });
-
-            // Function to add new emergency case
-            function addEmergencyCase(data) {
-                const emergencyList = document.querySelector('.emergency-list');
-                const newCase = document.createElement('div');
-                newCase.className = `emergency-item ${data.urgency === 'URGENT' ? 'urgent' : ''}`;
-                
-                newCase.innerHTML = `
-                    <div class="emergency-header">
-                        <h3>${data.caseType} - ${data.patientName}</h3>
-                        <span class="status-badge">${data.urgency}</span>
-                    </div>
-                    <div class="emergency-details">
-                        <p><i class="fas fa-user"></i> Nama Pasien: <strong>${data.patientName}</strong></p>
-                        <p><i class="fas fa-tint"></i> Gol. Darah: <strong>${data.bloodType}</strong></p>
-                        <p><i class="fas fa-map-marker-alt"></i> ${data.hospital}</p>
-                        <p><i class="fas fa-clock"></i> Dilaporkan: ${data.timestamp}</p>
-                        <p><i class="fas fa-user-md"></i> Dokter Penanggung Jawab: ${data.doctor}</p>
-                    </div>
-                    <div class="emergency-actions">
-                        <button class="btn btn-small">
-                            <i class="fas fa-check"></i> Tandai Diproses
-                        </button>
-                        <button class="btn btn-small">
-                            <i class="fas fa-phone"></i> Hubungi RS
-                        </button>
-                    </div>
-                `;
-                
-                // Add new case at the beginning of the list
-                emergencyList.insertBefore(newCase, emergencyList.firstChild);
             }
         });
     </script>
+
 </body>
 </html>
